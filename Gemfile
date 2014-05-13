@@ -37,5 +37,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'mongoid', '~> 4.0.0.beta1'
+gem 'sorcery', github: 'arnvald/sorcery', branch: 'rails_4_1_fix'
+
 
 
