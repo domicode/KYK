@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Own information:</strong>
   <%= @user.first_name %>
   <%= @user.last_name %>
   <%= @user.address %>
@@ -10,3 +10,24 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<% if @user.contacts.size > 0 %>
+  <h2>Contacts</h2>
+  <% for contact in @user.contacts %>
+    <p><%= contact.first_name %></p>
+    <p><%= contact.last_name %></p>
+    <p><%= contact.address %></p>
+    <p><%= contact.postal_code %></p>
+    <p><%= contact.city %></p>
+  <% end %>
+<% end %>
+
+<h2>New Comment</h2>
+<%= form_for [@user, Contact.new] do |f| %>
+  <p><%= f.label :first_name %> <%= f.text_field :first_name %></p>
+  <p><%= f.label :last_name %> <%= f.text_field :last_name %></p>
+  <p><%= f.label :address %> <%= f.text_field :address %></p>
+  <p><%= f.label :postal_code %> <%= f.text_field :postal_code %></p>
+  <p><%= f.label :city %> <%= f.text_field :city %></p>
+  <p><%= f.submit %></p>
+<% end %>
