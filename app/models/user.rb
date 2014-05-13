@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   # include Mongoid::Attributes::Dynamic
-  # include Mongoid::Versioning #check what id does it do
+  # include Mongoid::Versioning
 
   include Geocoder::Model::Mongoid
   geocoded_by :address               # can also be an IP address
