@@ -12,7 +12,7 @@ class ContactsController < ApplicationController
   private
 
   def comment_params
-    params.require(:contact).permit(:first_name, :last_name, :address, :postal_code, :city)
+    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country)
   end
 
 

@@ -12,10 +12,13 @@ class Contact
   field :postal_code, type: String
   field :city, type: String
   field :country, type: String
+  field :coordinates, :type => Array
 
   def address
     # "#{@street}" + " #{@postal_code}" + " #{@city}" + " #{@country}"
-    "#{@street}" + " #{@city}" + " #{@country}"
+    full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
+    puts "+++++++++++++++++++++++++++++++++++" + full_address
+    full_address
   end
 
   embedded_in :user
