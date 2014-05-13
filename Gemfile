@@ -42,5 +42,8 @@ gem 'sorcery', github: 'arnvald/sorcery', branch: 'rails_4_1_fix'
 gem 'figaro'
 gem 'geocoder'
 
+# gem 'mongoid-versioning'
 
+gem 'underscore-rails'
+gem 'gmaps4rails'
 
