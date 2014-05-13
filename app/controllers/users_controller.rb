@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_filter :require_login, :except => [:not_authenticated]
+  before_filter :require_login, :except => [:not_authenticated]
+  skip_before_filter :require_login, only: [:index, :new, :create]
 
   # GET /users
   # GET /users.json
