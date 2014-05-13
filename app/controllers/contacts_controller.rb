@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @contact = Contact.new(:user_id=>@user.id)
+    @contact = Contact.new
   end
 
   def create
@@ -14,14 +14,14 @@ class ContactsController < ApplicationController
   
   def edit
     @user = User.find(params[:user_id])
-    @contact = @user.contacts.first
+    @contact = @user.contacts.find(params[:id])
   end
 
   
   def update
     @user = User.find(params[:user_id])
     respond_to do |format|
-      if @user.contacts.first.update(contact_params)
+      if @user.contacts.find(params[:id]).update(contact_params)
         format.html { redirect_to @user, notice: 'Contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
