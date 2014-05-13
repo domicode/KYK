@@ -5,7 +5,7 @@
   <%= @user.first_name %>
   <%= @user.last_name %>
   <%= @user.street %>
-  <%= @user.postal_code %> <%= @user.city %>
+  <%= @user.postal_code %> <%= @user.city %> <%= @user.country %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
@@ -19,6 +19,7 @@
     <p><%= contact.street %></p>
     <p><%= contact.postal_code %></p>
     <p><%= contact.city %></p>
+    <p><%= contact.country %></p>
   <% end %>
 <% end %>
 
