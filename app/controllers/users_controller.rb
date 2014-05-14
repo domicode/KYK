@@ -11,9 +11,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
+    def show
+      @user = User.find(params[:id])
+      
+      if params[:search] && params[:search] != ""
+        @contacts = @user.contacts.where(first_name: params[:search])
+      else
+        @contacts = @user.contacts
+      end
+      
+    end
 
   def new
     @user = User.new
@@ -28,7 +35,7 @@ class UsersController < ApplicationController
       if @user.save
 
         # find all embedded contacts document with that user email
-        User.contacts.update({'contacts' : { $elemMatch : { 'email' : 'domicode' } } }, {$set: {'contacts.$.country':"Switzerland"}})
+        # User.contacts.update({'contacts' : { $elemMatch : { 'email' : 'domicode' } } }, {$set: {'contacts.$.country':"Switzerland"}})
 
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -61,16 +68,16 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :password, :password_confirmation)
+  end
 
-    def not_authenticated
-      redirect_to root_path, :alert => "Please login first"
-    end
-    
+  def not_authenticated
+    redirect_to root_path, :alert => "Please login first"
+  end
+
 end

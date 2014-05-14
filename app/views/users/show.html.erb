@@ -9,10 +9,15 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
+<%= form_tag user_path, method: :get, id: 'search-form' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
 <div class="contacts">
   <% if @user.contacts.size > 0 %>
     <h2>Contacts</h2>
-    <% for contact in @user.contacts %>
+    <% for contact in @contacts %>
       <div class="contact">
         <p><%= contact.first_name %> <%= contact.last_name %></p>
         <p><%= contact.street %></p>
