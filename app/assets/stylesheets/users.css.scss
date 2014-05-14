@@ -1,7 +1,6 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 *, *:before, *:after {
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
@@ -44,4 +43,8 @@ body {
   background-color: darkblue;
   color: white;
   transition: 0.3s;
+
+#map {
+  width: 800px;
+  height: 400px;
 }
