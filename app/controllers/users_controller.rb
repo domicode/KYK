@@ -27,8 +27,17 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
 
+
         # find all embedded contacts document with that user email
-        User.contacts.update({'contacts' : { $elemMatch : { 'email' : 'domicode' } } }, {$set: {'contacts.$.country':"Switzerland"}})
+        User.all.each do |user|
+          user.contacts.each do |contact|
+            if contact.email == @user.email
+              contact.update({ 'user_id' => @user.id })
+            end
+          end
+        end
+
+        # query = {"$or" => [{"flagged" => {"$ne" => true}}, {"saved" => {"$ne" => true}}]}
 
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
