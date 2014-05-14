@@ -9,21 +9,22 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
-<% if @user.contacts.size > 0 %>
-  <h2>Contacts</h2>
-  <% for contact in @user.contacts %>
-    <p><%= contact.first_name %></p>
-    <p><%= contact.last_name %></p>
-    <p><%= contact.street %></p>
-    <p><%= contact.postal_code %></p>
-    <p><%= contact.city %></p>
-    <p><%= contact.country %></p>
-    <p><%= link_to("edit contact", edit_user_contact_path(@user.id, contact.id)) %>
+<div class="contacts">
+  <% if @user.contacts.size > 0 %>
+    <h2>Contacts</h2>
+    <% for contact in @user.contacts %>
+      <div class="contact">
+        <p><%= contact.first_name %> <%= contact.last_name %></p>
+        <p><%= contact.street %></p>
+        <p><%= contact.postal_code %> <%= contact.city %></p>
+        <p><%= contact.country %></p>
+        <p>
+          <%= link_to("edit", edit_user_contact_path(@user.id, contact.id)) %> 
+          <%= link_to("remove", user_contact_path(@user.id, contact.id), method: :delete, data: { confirm: 'Are you sure?' }) %>
+        </p>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
-
-<div class="new-contact">
-  <h2>New contact</h2>
-  <%= link_to "Add a contact", new_user_contact_path(@user.id) %>
-
 </div>
+
+

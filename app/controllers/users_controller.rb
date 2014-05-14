@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, only: [:index, :new, :create]
 
   def index
-    redirect_to user_path(current_user.id)
+    if current_user
+      redirect_to user_path(current_user.id)
+    else
+      redirect_to login_path
+    end
   end
 
   def show

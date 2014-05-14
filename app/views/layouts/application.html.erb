@@ -15,7 +15,12 @@
       <%= link_to "Register", new_user_path %> |
       <%= link_to "Login", :login %>
     <% end %>
+
+    <div class="new-contact">
+      <%= link_to "Add a contact", new_user_contact_path(@user.id) %>
+    </div>
   </div>
+
   <div>
     <p id="notice"><%= flash[:notice] %></p>
     <p id="alert"><%= flash[:alert] %></p>
