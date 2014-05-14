@@ -5,7 +5,8 @@
   $(document).ready(function() {
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: { maxZoom: 14 }, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
+      
+      markers_Array = [
       {      
         "lng": <%= @user.coordinates[0] %>,
         "lat": <%= @user.coordinates[1] %>,
@@ -14,9 +15,26 @@
           "width":  36,
           "height": 36
         },
-        "infowindow": "hello!"
+        "infowindow": "user marker"
       }
-      ]);
+      ];
+
+      /* add yellow markers for contacts */
+      <% @user.contacts.each do |contact| %>
+        var contact_marker = {
+        "lng": <%= contact.coordinates[0] %>,
+        "lat": <%= contact.coordinates[1] %>,
+        "picture": {
+          "url": "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+          "width":  36,
+          "height": 36
+        },
+        "infowindow": "contact marker"          
+        };
+        markers_Array.push(contact_marker);
+      <% end %>
+
+      markers = handler.addMarkers(markers_Array);
 
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
