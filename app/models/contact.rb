@@ -6,6 +6,7 @@ class Contact
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
+  field :user_id, type: String
   field :first_name, type: String
   field :last_name, type: String
   field :street, type: String
@@ -13,6 +14,7 @@ class Contact
   field :city, type: String
   field :country, type: String
   field :coordinates, :type => Array
+  field :email, type: String
 
   def address
     # "#{@street}" + " #{@postal_code}" + " #{@city}" + " #{@country}"

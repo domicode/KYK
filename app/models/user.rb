@@ -22,6 +22,7 @@ class User
   # field :longitude, type: BigDecimal
 
   embeds_many :contacts, :inverse_of => :contacts
+  accepts_nested_attributes_for :contacts
 
   validates :email, presence: true
   validates :email, uniqueness: true

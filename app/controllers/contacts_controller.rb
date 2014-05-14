@@ -8,6 +8,9 @@ class ContactsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @contact = @user.contacts.create!(contact_params)
+
+    # find if there is any user with that contact email address
+
     redirect_to @user, notice: "contact was created"
   end
 
@@ -44,7 +47,7 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country)
+    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email)
   end
 
 

@@ -24,9 +24,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
+
+        # find all embedded contacts document with that user email
+        User.contacts.update({'contacts' : { $elemMatch : { 'email' : 'domicode' } } }, {$set: {'contacts.$.country':"Switzerland"}})
+
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
