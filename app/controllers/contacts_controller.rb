@@ -10,6 +10,11 @@ class ContactsController < ApplicationController
     @contact = @user.contacts.create!(contact_params)
 
     # find if there is any user with that contact email address
+    User.all.each do |user|
+      if user.email == @contact.email
+        @contact.update({ 'user_id' => user.id })
+      end
+    end
 
     redirect_to @user, notice: "contact was created"
   end
