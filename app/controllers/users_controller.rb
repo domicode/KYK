@@ -34,15 +34,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
 
-
-        # find all embedded contacts document with that user email
-        User.all.each do |user|
-          user.contacts.each do |contact|
-            if contact.email == @user.email
-              contact.update({ 'user_id' => @user.id })
-            end
-          end
-        end
+        update_embedded_contact_fields
 
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
@@ -56,6 +48,9 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+
+        update_embedded_contact_fields
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -85,5 +80,27 @@ class UsersController < ApplicationController
   def not_authenticated
     redirect_to root_path, :alert => "Please login first"
   end
+
+  def update_embedded_contact_fields
+
+    # find all embedded contacts document with that user email
+    User.all.each do |user|
+      user.contacts.each do |contact|
+        if contact.email == @user.email
+          contact.update({ 
+            'user_id' => @user.id,  
+            'first_name' => @user.first_name,  
+            'last_name' => @user.last_name,  
+            'street' => @user.street,  
+            'postal_code' => @user.postal_code,  
+            'city' => @user.city,  
+            'country' => @user.country,  
+            'email' => @user.email
+            })
+        end
+      end
+    end
+  end
+
 
 end
