@@ -24,6 +24,7 @@ body {
   height: 100px;
   border: 3px solid black; 
   margin-right: 5px;
+  margin-top: 5px;
   padding: 0px 10px;
   border-radius: 10px;
   overflow: hidden;
@@ -38,6 +39,7 @@ body {
   height: auto;
   border: 3px solid black; 
   margin-right: 5px;
+  margin-top: 5px;
   padding: 0px 10px;
   border-radius: 10px;
   background-color: darkblue;
@@ -46,6 +48,9 @@ body {
 }
 
 #map {
-  width: 800px;
+  width: 98%;
   height: 400px;
+  margin-top: 10px;
+  border: 4px solid black; 
+  border-radius: 40px 0px 40px 0px;
 }
