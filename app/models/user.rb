@@ -29,6 +29,36 @@ class User
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
 
+  before_save :update_contacts_attributes, unless: :contacts_changed?
+
+  def update_contacts_attributes
+
+    # id = current_user.id
+    # contacts = Contact.where()
+    puts "++++++++++++++++++++++++++++++++++ update contact attributes"
+      User.all.each do |user|
+        user.contacts.each do |contact|
+          if contact.user_id == self.id
+            contact.attributes.each do |key, value|
+              # if key != ""
+              # contact.update({ 'key' => @user.key })
+              puts "key: " + key
+              puts "value: " + value.to_s
+            # end
+          end
+        end
+      end
+    end
+  end
+
+  def contacts_changed?
+    self.contacts.each do |contact|
+      return true if contact.changed?
+    end
+    return false
+  end
+
+
   def address
     # "#{@street}" + " #{@postal_code}" + " #{@city}" + " #{@country}"
     # "#{@street}" + " #{@city}" + " #{@country}"
