@@ -38,7 +38,7 @@ class User
     puts "++++++++++++++++++++++++++++++++++ update contact attributes"
       User.all.each do |user|
         user.contacts.each do |contact|
-          if contact.user_id == self.id
+          if contact.user_id.to_s == self.id.to_s
             contact.attributes.each do |key, value|
               # if key != ""
               # contact.update({ 'key' => @user.key })
