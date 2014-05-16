@@ -78,11 +78,11 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :coordinates,:password, :password_confirmation)
   end
 
   def edit_user_params
-    params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email)
+    params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :coordinates)
   end
 
   def not_authenticated

@@ -30,7 +30,7 @@
 
         <%= link_to 'Edit', edit_user_path(@user) %> |
 
-        <%= form_tag user_path, method: :get, id: 'search-form' do %>
+        <%= form_tag user_path(@user), method: :get, id: 'search-form' do %>
           <%= text_field_tag :search, params[:search] %>
           <%= submit_tag "Search" %>
         <% end %>
