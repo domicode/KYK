@@ -42,18 +42,18 @@ body {
   width: 250px;
   height: auto;
   border: 3px solid black; 
-  margin-right: 5px;
-  margin-top: 5px;
   padding: 0px 10px;
   border-radius: 10px;
   background-color: darkblue;
   color: white;
   transition: 0.3s;
+  margin: 5px;
 }
 
 
 #map {
-  width: 450px;
+  width: 33%; 
+  min-width: 450px;
   height: 300px;
   margin-top: 40px;
   border: 4px solid black; 
