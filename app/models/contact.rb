@@ -1,6 +1,8 @@
 class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Attributes::Dynamic
+
 
   include Geocoder::Model::Mongoid
   geocoded_by :address               # can also be an IP address

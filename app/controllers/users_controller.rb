@@ -47,7 +47,13 @@ class UsersController < ApplicationController
 
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      # if password != empty use user_params otherwise edit_params
+      if params[:user][:password].blank? 
+        params = edit_user_params
+      else
+        params = user_params
+      end
+      if @user.update(params)
 
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
@@ -73,6 +79,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :password, :password_confirmation)
+  end
+
+  def edit_user_params
+    params.require(:user).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email)
   end
 
   def not_authenticated

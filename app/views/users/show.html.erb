@@ -47,21 +47,7 @@
 
 </script>
 
-<p>
-  <strong>Own information:</strong>
-  <%= @user.first_name %>
-  <%= @user.last_name %>
-  <%= @user.street %>
-  <%= @user.postal_code %> <%= @user.city %> <%= @user.country %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-
-<%= form_tag user_path, method: :get, id: 'search-form' do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Search" %>
-<% end %>
 
 <div id="map"></div>
 
