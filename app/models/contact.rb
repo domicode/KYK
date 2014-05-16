@@ -16,6 +16,7 @@ class Contact
   field :coordinates, :type => Array
   field :email, type: String
   field :connected, type: String
+  field :new_contact, type: String
 
   def address
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s

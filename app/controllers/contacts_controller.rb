@@ -13,6 +13,13 @@ class ContactsController < ApplicationController
     User.all.each do |user|
       if user.email == @contact.email
         @contact.update({ 'user_id' => user.id, 'connected' => "connected" })
+        # Add the current user as a contact for the user which is the found contact
+        user.contacts.create({
+          'new_contact' => true,
+          'email' => @user.email,
+          'first_name' => @user.first_name,
+          'last_name' => @user.last_name,
+          })
       end
     end
 
