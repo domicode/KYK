@@ -2,10 +2,10 @@ class ContactsController < ApplicationController
 
   def new
     @user = User.find(params[:user_id])
-    @contact = Contact.new
+    @contact = Contact.new(:user_id => @user.id)
   end
 
-  def create
+  def create 
     @user = User.find(params[:user_id])
     @contact = @user.contacts.create!(contact_params)
 
@@ -59,7 +59,7 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :connected, :new_contact)
+    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :coordinates, :connected, :new_contact)
   end
 
 
