@@ -47,3 +47,9 @@ gem 'geocoder'
 gem 'underscore-rails'
 gem 'gmaps4rails'
 
+group :development do
+  gem 'faker'
+  gem 'quiet_assets'
+  gem 'binding_of_caller'
+  gem 'better_errors'
+end
