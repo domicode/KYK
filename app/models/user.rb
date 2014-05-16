@@ -6,7 +6,7 @@ class User
 
   include Geocoder::Model::Mongoid
   geocoded_by :address               # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+  after_validation :geocode        # auto-fetch coordinates
 
   authenticates_with_sorcery!
 
@@ -32,15 +32,11 @@ class User
   before_save :update_contacts_attributes, unless: :contacts_changed?
 
   def update_contacts_attributes
-
-    # id = current_user.id
-    # contacts = Contact.where()
-    puts "++++++++++++++++++++++++++++++++++ update contact attributes"
       User.all.each do |user|
         user.contacts.each do |contact|
           if contact.user_id.to_s == self.id.to_s
             contact.attributes.each do |key, value|
-              if key.to_s == "_id" || key.to_s == "user_id" || key.to_s == "coordinates" || key.to_s == "notes"
+              if key.to_s == "_id" || key.to_s == "user_id" || key.to_s == "coordinates" || key.to_s == "notes" || key.to_s == "conntected"
               
               elsif self.attributes[key] != ""
                 contact.update({ key => self.attributes[key] })
@@ -50,6 +46,7 @@ class User
       end
     end
   end
+
 
   def contacts_changed?
     self.contacts.each do |contact|
@@ -64,5 +61,6 @@ class User
     # "#{@street}" + " #{@city}" + " #{@country}"
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
     full_address
+    puts "++++++++++++++++++++++"
   end
 end

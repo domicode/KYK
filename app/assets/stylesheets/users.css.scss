@@ -32,6 +32,11 @@ body {
   transition: 0.5s;
 }
 
+.connected {
+  background: green;
+}
+
+
 .contactfullsize {
   float: left;
   position: relative;
@@ -46,6 +51,7 @@ body {
   color: white;
   transition: 0.3s;
 }
+
 
 #map {
   width: 98%;

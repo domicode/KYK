@@ -6,32 +6,36 @@
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: { maxZoom: 14 }, internal: {id: 'map'}}, function(){
       
-      markers_Array = [
-      {      
-        "lng": <%= @user.coordinates[0] %>,
-        "lat": <%= @user.coordinates[1] %>,
-        "picture": {
-          "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-          "width":  36,
-          "height": 36
-        },
-        "infowindow": "<%= @user.first_name %>"
-      }
-      ];
+      <% if @user.coordinates != nil %>
+        markers_Array = [
+        {      
+          "lng": <%= @user.coordinates[0] %>,
+          "lat": <%= @user.coordinates[1] %>,
+          "picture": {
+            "url": "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "<%= @user.first_name %>"
+        }
+        ];
+      <% end %>
 
       /* add yellow markers for contacts */
       <% @user.contacts.each do |contact| %>
-        var contact_marker = {
-        "lng": <%= contact.coordinates[0] %>,
-        "lat": <%= contact.coordinates[1] %>,
-        "picture": {
-          "url": "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
-          "width":  36,
-          "height": 36
-        },
-        "infowindow": "<%= contact.first_name %> <%= contact.last_name %>"          
-        };
-        markers_Array.push(contact_marker);
+        <%  if contact.coordinates != nil %>
+          var contact_marker = {
+          "lng": <%= contact.coordinates[0] %>,
+          "lat": <%= contact.coordinates[1] %>,
+          "picture": {
+            "url": "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png",
+            "width":  36,
+            "height": 36
+          },
+          "infowindow": "<%= contact.first_name %> <%= contact.last_name %>"          
+          };
+          markers_Array.push(contact_marker);
+        <% end %>
       <% end %>
 
       markers = handler.addMarkers(markers_Array);
@@ -65,7 +69,7 @@
   <% if @user.contacts.size > 0 %>
     <h2>Contacts</h2>
     <% for contact in @contacts %>
-      <div class="contact">
+      <div class="contact <%= contact.connected %>">
         <p><%= contact.first_name %> <%= contact.last_name %></p>
         <p><%= contact.street %></p>
         <p><%= contact.postal_code %> <%= contact.city %></p>

@@ -86,7 +86,8 @@ class UsersController < ApplicationController
       user.contacts.each do |contact|
         if contact.email == @user.email
           contact.update({ 
-             'user_id' => @user.id  
+             'user_id' => @user.id,
+             'connected' => "connected"
             })
         end
       end

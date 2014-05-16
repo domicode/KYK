@@ -12,7 +12,7 @@ class ContactsController < ApplicationController
     # find if there is any user with that contact email address
     User.all.each do |user|
       if user.email == @contact.email
-        @contact.update({ 'user_id' => user.id })
+        @contact.update({ 'user_id' => user.id, 'connected' => "connected" })
       end
     end
 
@@ -52,7 +52,7 @@ class ContactsController < ApplicationController
   private
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email)
+    params.require(:contact).permit(:first_name, :last_name, :street, :postal_code, :city, :country, :email, :connected)
   end
 
 
