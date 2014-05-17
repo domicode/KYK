@@ -20,14 +20,14 @@
       <div class="new-contact">
         <%= link_to "Add a contact", new_user_contact_path(@user.id) %>
       </div>
-      <div class="user-information">
+      <div class="user-information" id="<%= @user.id %>">
         <strong>Own information:</strong>
         <%= @user.first_name %>
         <%= @user.last_name %>
         <%= @user.street %>
         <%= @user.postal_code %> <%= @user.city %> <%= @user.country %>
 
-        <%= link_to 'Edit', edit_user_path(@user) %> |
+        <%= link_to 'Edit', edit_user_path(@user) %>
 
         <%= form_tag user_path(@user), method: :get, id: 'search-form' do %>
           <%= text_field_tag :search, params[:search] %>

@@ -1,0 +1,13 @@
+  <%= @contact.each do |contact| %>
+    <div class="contact <%= contact.connected %>">        
+      <p><%= contact.first_name %> <%= contact.last_name %></p>
+      <p><%= contact.street %></p>
+      <p><%= contact.postal_code %> <%= contact.city %></p>
+      <p><%= contact.country %></p>
+      <p><%= contact.email %></p>
+      <p>
+        <%= link_to("edit", edit_user_contact_path(current_user.id, contact.id)) %> 
+        <%= link_to("remove", user_contact_path(current_user.id, contact.id), method: :delete, data: { confirm: 'Are you sure?' }) %>
+      </p>
+    </div>
+  <% end %> 

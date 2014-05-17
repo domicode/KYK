@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :contacts
   end
 
+  post '/addcontact/:user_id/:contact_id', to: 'users#add_contact'
+
   root to: 'users#index'
 
   resources :user_sessions, only: [:new, :create, :destroy]

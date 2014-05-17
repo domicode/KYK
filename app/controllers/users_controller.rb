@@ -19,6 +19,8 @@ class UsersController < ApplicationController
       else
         @contacts = @user.contacts
       end
+
+      @new_contacts = @user.contacts.where(new_contact: true)
       
     end
 
@@ -69,6 +71,19 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def add_contact
+    user = User.find(params[:user_id])
+    @contact = user.contacts.where(id: params[:contact_id])
+    @contact.update({ 'new_contact' => nil })
+
+    puts @contact
+
+    respond_to do |format|
+      format.json { render :json => @contact }
+      format.js {}
     end
   end
 
