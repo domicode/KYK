@@ -31,6 +31,10 @@ $(document).ready(function(){
 
     $(this).remove()
 
+    if ($(".new-contact").size() == 1) {
+      $(".new-contacts").hide()
+    }
+
     // console.log(event["target"])
 
     // if (event.target() == $(".addContact")) {
