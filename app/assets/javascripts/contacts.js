@@ -21,7 +21,7 @@ $(document).ready(function(){
 
   
 
-  $(".addContact").click(function(event){
+  $(".newContact").click(function(event){
     // some Ajax request to do something
 
     userId = $(".user-information").attr("id");
@@ -29,6 +29,7 @@ $(document).ready(function(){
 
     console.log(userId)
     console.log(contactId)
+    $(this).remove()
 
     var url = "/addcontact/"+userId+"/"+contactId;
 

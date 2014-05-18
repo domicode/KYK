@@ -51,14 +51,15 @@
 <div class="new-contacts">
   <% if @new_contacts.size > 0 %>
     <button class="new-contacts-button">new contacts</button>
-      <ul class="new-contact-list">
-      The following contact added you in your network:      
-      <% @new_contacts.each do |contact| %>
-        <li><%= contact.first_name %> <%= contact.last_name %> <%= contact.email %>
-        <button class="addContact" id="<%= contact.id %>">Add</button>
-        <button class="refuseContact" id="<%= contact.id %>">-</button></li>
-      <% end %>
-      </ul>
+      <div class="new-contact-list">      
+        <% @new_contacts.each do |contact| %>
+          <div class="new-contact" id="<%= contact.id %>">
+            <li><%= contact.first_name %> <%= contact.last_name %> <%= contact.email %></li>
+            <button class="addContact" id="<%= contact.id %>">Add</button>
+            <button class="refuseContact" id="<%= contact.id %>">-</button>
+          </div>
+        <% end %>
+      </div>
     <% end %>
 </div>  
 
