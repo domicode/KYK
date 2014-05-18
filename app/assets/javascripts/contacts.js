@@ -19,17 +19,23 @@ $(document).ready(function(){
     }
   });
 
+
+
   
 
-  $(".newContact").click(function(event){
+  $(".new-contact").click(function(event){
     // some Ajax request to do something
 
     userId = $(".user-information").attr("id");
     contactId = this.id;
 
-    console.log(userId)
-    console.log(contactId)
     $(this).remove()
+
+    // console.log(event["target"])
+
+    // if (event.target() == $(".addContact")) {
+    //   alert("adding was clicked")
+    // }
 
     var url = "/addcontact/"+userId+"/"+contactId;
 
@@ -45,9 +51,15 @@ $(document).ready(function(){
     });
   });
 
+  $(".refuseContact").click(function(event){
+    // some Ajax request to do something else
+    alert("contact was refused")
+  });
+
 
   $(".refuseContact").click(function(event){
     // some Ajax request to do something else
+    alert("contact was refused")
   });
 
 
