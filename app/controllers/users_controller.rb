@@ -11,11 +11,18 @@ class UsersController < ApplicationController
     end
   end
 
-    def show
-      @user = User.find(params[:id])
-      
-      if params[:search] && params[:search] != ""
-        @contacts = @user.contacts.where(first_name: params[:search])
+  def show
+    @user = User.find(params[:id])
+
+    if params[:search] && params[:search] != ""
+      @contacts = @user.contacts.where(first_name: params[:search])
+    elsif params[:search_tags] && params[:search_tags] != ""
+        search_tags = Array.new
+        params[:search_tags].split(',').each do |tag|
+          search_tags.push(tag.strip) unless search_tags.include?(tag)
+        end
+
+        @contacts = @user.contacts.where(:tags.in => search_tags)
       else
         @contacts = @user.contacts
       end
@@ -24,31 +31,31 @@ class UsersController < ApplicationController
       
     end
 
-  def new
-    @user = User.new
-  end
+    def new
+      @user = User.new
+    end
 
-  def edit
-  end
+    def edit
+    end
 
-  def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
+    def create
+      @user = User.new(user_params)
+      respond_to do |format|
+        if @user.save
 
-        connect_embedded_contact
+          connect_embedded_contact
 
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
-  def update
-    respond_to do |format|
+    def update
+      respond_to do |format|
       # if password != empty use user_params otherwise edit_params
       if params[:user][:password].blank? 
         params = edit_user_params
@@ -109,9 +116,9 @@ class UsersController < ApplicationController
       user.contacts.each do |contact|
         if contact.email == @user.email
           contact.update({ 
-             'user_id' => @user.id,
-             'connected' => "connected",
-            })
+           'user_id' => @user.id,
+           'connected' => "connected",
+           })
           @user.contacts.create({
             'new_contact' => true,
             'email' => user.email,

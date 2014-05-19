@@ -49,7 +49,6 @@
 
 </script>
 
-
 <div class="new-contacts">
   <% if @new_contacts.size > 0 %>
     <button class="new-contacts-button">new contacts</button>
@@ -68,11 +67,15 @@
 
 <div id="map"></div>
 
-
-
 <div class="contacts">
   <% if @user.contacts.size > 0 %>
     <h2>Contacts</h2>
+
+  <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>
+    <%= text_field_tag :search_tags, params[:search_tags] %>
+    <%= submit_tag "Search Tags" %>
+  <% end %>
+
     <%= render partial: "contact" %>
   <% end %>
 </div>
