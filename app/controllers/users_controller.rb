@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     @contact.update({ 'new_contact' => nil, 'connected' => "connected" })
 
     respond_to do |format|
-      format.json { render :json => @contact }
+      # format.json { render :json => @contact }
       format.js {}
     end
   end
