@@ -23,6 +23,7 @@ class Contact
 
   def address
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
+    return full_address
   end
 
   embedded_in :user

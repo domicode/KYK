@@ -65,7 +65,7 @@ class User
     # "#{@street}" + " #{@postal_code}" + " #{@city}" + " #{@country}"
     # "#{@street}" + " #{@city}" + " #{@country}"
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
-    full_address
+    return full_address
     puts "++++++++++++++++++++++"
   end
 end

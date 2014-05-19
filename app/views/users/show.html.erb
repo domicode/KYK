@@ -6,6 +6,8 @@
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: { maxZoom: 14 }, internal: {id: 'map'}}, function(){
       
+      markers_Array = []
+
       <% if @user.coordinates != nil %>
         markers_Array = [
         {      
