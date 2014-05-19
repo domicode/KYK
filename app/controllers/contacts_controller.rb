@@ -49,7 +49,11 @@ class ContactsController < ApplicationController
   def destroy
     @user = User.find(params[:user_id])
     @user.contacts.find(params[:id]).destroy
-    redirect_to @user
+
+    respond_to do |format|
+      format.html {redirect_to @user}
+      format.json { render json: ""}
+    end
   end
 
 

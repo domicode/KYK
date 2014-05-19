@@ -28,13 +28,15 @@ $(document).ready(function(){
     userId = $(".user-information").attr("id");
     contactId = this.id;
 
-    $(this).remove()
-
-    if ($(".new-contact").size() == 1) {
+    
+    if ($(".new-contact").size() == 2) {
       $(".new-contacts").hide()
     }
 
     if ($(event.target).hasClass("addContact")) {
+      
+      $(this).remove()
+
       var url = "/addcontact/"+userId+"/"+contactId;
 
       $.ajax({
@@ -50,21 +52,25 @@ $(document).ready(function(){
     }
 
     if ($(event.target).hasClass("refuseContact")) {
-      // some Ajax request to do something else
-      alert("contact was refused")
-      var url = "/users/"+userId+"/contacts/"+contactId;
 
-      // something to fix, deletes the whole user for now:
-      // $.ajax({
-      //   url: url,
-      //   type: "DELETE",
-      //   // dataType: "script",
-      //   // data: 
-      // }).done(function(data){
-      //   console.log("success" + data);
-      // }).fail(function(data) {
-      //   console.log("failure" + data);
-      // });
+      if (confirm("are you sure?")) {
+
+        $(this).remove()
+
+        var url = "/users/"+userId+"/contacts/"+contactId;
+
+        $.ajax({
+          url: url,
+          type: "DELETE",
+          dataType: "json",
+          // data: 
+        }).done(function(){
+        }).fail(function(data) {
+        });
+
+      };
+
+
 
     };
 
