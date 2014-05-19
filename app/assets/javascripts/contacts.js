@@ -52,6 +52,20 @@ $(document).ready(function(){
     if ($(event.target).hasClass("refuseContact")) {
       // some Ajax request to do something else
       alert("contact was refused")
+      var url = "/users/"+userId+"/contacts/"+contactId;
+
+      // something to fix, deletes the whole user for now:
+      // $.ajax({
+      //   url: url,
+      //   type: "DELETE",
+      //   // dataType: "script",
+      //   // data: 
+      // }).done(function(data){
+      //   console.log("success" + data);
+      // }).fail(function(data) {
+      //   console.log("failure" + data);
+      // });
+
     };
 
   });

@@ -77,9 +77,7 @@ class UsersController < ApplicationController
   def add_contact
     user = User.find(params[:user_id])
     @contact = user.contacts.where(id: params[:contact_id])
-    @contact.update({ 'new_contact' => nil })
-
-    puts @contact
+    @contact.update({ 'new_contact' => nil, 'connected' => "connected" })
 
     respond_to do |format|
       format.json { render :json => @contact }
@@ -112,7 +110,13 @@ class UsersController < ApplicationController
         if contact.email == @user.email
           contact.update({ 
              'user_id' => @user.id,
-             'connected' => "connected"
+             'connected' => "connected",
+            })
+          @user.contacts.create({
+            'new_contact' => true,
+            'email' => user.email,
+            'first_name' => user.first_name,
+            'last_name' => user.last_name,
             })
         end
       end
