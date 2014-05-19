@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'oauths/oauth'
+
+  get 'oauths/callback'
+
   get 'user_sessions/new'
 
   get 'user_sessions/create'
@@ -17,6 +21,10 @@ Rails.application.routes.draw do
 
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
+
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" # for use with Github
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       if @user.save
 
         connect_embedded_contact
-
+        auto_login(@user)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else

@@ -8,7 +8,9 @@ class User
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
-  authenticates_with_sorcery!
+  authenticates_with_sorcery! do |config|
+    config.authentications_class = Authentication
+  end
 
   field :first_name, type: String
   field :last_name, type: String
@@ -23,6 +25,9 @@ class User
 
   embeds_many :contacts, :inverse_of => :contacts
   accepts_nested_attributes_for :contacts
+  embeds_many :authentications, :inverse_of => :authentications #, :dependent => :destroy (have to fix that)
+  accepts_nested_attributes_for :authentications
+
 
   validates :email, presence: true
   validates :email, uniqueness: true
