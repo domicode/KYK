@@ -79,6 +79,14 @@
   <p>tags_array: <%= @user.tags_array %></p>
   <p>tags_with_weight: <%= @user.tags_with_weight %></p>
 
+  <div id="tag_cloud">
+    <% user_tags_with_weight = @user.tags_with_weight %>
+    <% max_weight = user_tags_with_weight.max_by(&:last)[1] %>
+    <% user_tags_with_weight.each do |tag, weight| %>
+      <%= link_to tag, user_path(@user) + "?search_tags=" + tag + "&commit=Search+Tags", class: %w{s m l}[((weight/max_weight.to_f)*3).round-1] %>
+    <% end %>
+  </div>
+
     <%= render partial: "contact" %>
   <% end %>
 </div>
