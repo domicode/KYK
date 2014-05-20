@@ -22,13 +22,17 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
-  get "oauth/contacts" => "oauths#authorise", :as => :googleauth
 
+  # This is for fetching stuff from google
+  post 'import', to: 'import#authenticate', as: :import
+  get "oauth/contacts" => "import#authorise", :as => :googleauth #this is the callback url for the API, to set up in the api
+
+
+  #This is for 3rd party authorization
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" # for use with Github
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
-  post 'oauth', to: 'oauths#authenticate', as: :import
   
 
   # get "/oauth2callback/google" => "oauths#oauth"

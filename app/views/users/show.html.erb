@@ -50,7 +50,7 @@
 </script>
 
 <div class="import-contacts">
-  <%= form_tag(controller: "oauths", action: "authenticate", method: "post", class: "nifty_form") do %>
+  <%= form_tag(controller: "import", action: "authenticate", method: "post", class: "nifty_form") do %>
   <%= submit_tag "import contacts" %>
   <% end %>
 </div>
