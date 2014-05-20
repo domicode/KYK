@@ -43,10 +43,10 @@ class ImportController < ApplicationController
         contacts['feed']['entry'].each_with_index do |contact,index|
 
            name = contact['title']['$t']
-           address = contact['gd$postalAddress'][0]['$t']
+           # address = contact['gd$postalAddress'][0]['$t']
            contact['gd$email'].to_a.each do |email|
             email_address = email['address']
-            current_user.contacts.create(:first_name => name, :street => address, :email => email_address)  # for testing i m pushing it into database..
+            current_user.contacts.create(:first_name => name, :email => email_address)  # for testing i m pushing it into database..
           end
 
         end  
