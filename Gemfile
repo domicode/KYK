@@ -46,6 +46,7 @@ gem 'geocoder'
 
 gem 'underscore-rails'
 gem 'gmaps4rails'
+gem 'gdata'
 
 group :development do
   gem 'faker'

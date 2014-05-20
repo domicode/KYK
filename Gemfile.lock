@@ -67,6 +67,7 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    gdata (1.1.2)
     geocoder (1.2.1)
     gmaps4rails (2.1.2)
     hike (1.2.3)
@@ -177,6 +178,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   faker
   figaro
+  gdata
   geocoder
   gmaps4rails
   jbuilder (~> 2.0)

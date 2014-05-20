@@ -110,7 +110,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
   config.facebook.key = Figaro.env.facebook_key
-  config.facebook.secret = Figaro.env_facebook_secret
+  config.facebook.secret = Figaro.env.facebook_secret
   config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:email => "email"}
   config.facebook.access_permissions = ["email", "publish_stream"]
@@ -123,7 +123,7 @@ Rails.application.config.sorcery.configure do |config|
   config.google.key = Figaro.env.google_key
   config.google.secret = Figaro.env.google_secret
   config.google.callback_url = "https://localhost:3000/oauth/callback?provider=google"
-  config.google.user_info_mapping = {:email => "email", :username => "name"}
+  config.google.user_info_mapping = {:email => "email", :first_name => "name"}
   
   # config.vk.key = ""
   # config.vk.secret = ""
