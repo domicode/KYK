@@ -46,12 +46,12 @@ gem 'geocoder'
 
 gem 'underscore-rails'
 gem 'gmaps4rails'
-gem 'gdata'
 
 group :development do
   gem 'faker'
   gem 'quiet_assets'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'pry'
   gem 'thin'
 end

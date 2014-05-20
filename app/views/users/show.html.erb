@@ -49,6 +49,12 @@
 
 </script>
 
+<div class="import-contacts">
+  <%= form_tag(controller: "oauths", action: "authenticate", method: "post", class: "nifty_form") do %>
+  <%= submit_tag "import contacts" %>
+  <% end %>
+</div>
+
 
 <div class="new-contacts">
   <% if @new_contacts.size > 0 %>

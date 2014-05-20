@@ -22,9 +22,14 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
 
+  get "oauth/contacts" => "oauths#authorise", :as => :googleauth
+
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" # for use with Github
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+
+  post 'oauth', to: 'oauths#authenticate', as: :import
+  
 
   # get "/oauth2callback/google" => "oauths#oauth"
 

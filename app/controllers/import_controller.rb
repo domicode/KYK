@@ -1,35 +1,4 @@
-class OauthsController < ApplicationController
-  skip_before_filter :require_login
-
-  # sends the user on a trip to the provider,
-  # and after authorizing there back to the callback url.
-  def oauth
-    login_at(params[:provider])
-  end
-
-  def callback
-    provider = auth_params[:provider]
-    if current_user
-      authorise
-    elsif @user = login_from(provider)
-      redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
-    else
-      begin
-        @user = create_from(provider)
-        # NOTE: this is the place to add '@user.activate!' if you are using user_activation submodule
-
-        reset_session # protect from session fixation attack
-        auto_login(@user)
-        redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
-      rescue
-        redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
-      end
-    end
-  end
-
-    #example for Rails 4: add private method below and use "auth_params[:provider]" in place of 
-    #"params[:provider] above.
-
+class ImportController < ApplicationController
     require 'net/http'
     require 'net/https'
     require 'uri'
@@ -37,13 +6,14 @@ class OauthsController < ApplicationController
 
     def authenticate
       @title = "Google Authetication"
+      googleauth_url = "https://localhost:3000/oauth/callback?provider=google"
 
       client_id = Figaro.env.google_key
       google_root_url = "https://accounts.google.com/o/oauth2/auth?state=profile&redirect_uri="+googleauth_url+"&response_type=code&client_id="+client_id.to_s+"&approval_prompt=force&scope=https://www.google.com/m8/feeds/"
       redirect_to google_root_url
     end
 
-    def authorise
+    def self.authorise
       begin
         @title = "Google Authetication"
         token = params[:code]
@@ -56,6 +26,7 @@ class OauthsController < ApplicationController
         request = Net::HTTP::Post.new(uri.request_uri)
 
         request.set_form_data('code' => token, 'client_id' => client_id, 'client_secret' => client_secret, 'redirect_uri' => googleauth_url, 'grant_type' => 'authorization_code')
+        request.content_type = 'application/x-www-form-urlencoded'
         response = http.request(request)
         response.code
         access_keys = ActiveSupport::JSON.decode(response.body)
@@ -67,36 +38,22 @@ class OauthsController < ApplicationController
         http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         request = Net::HTTP::Get.new(uri.request_uri)
         response = http.request(request)
-
-
         contacts = ActiveSupport::JSON.decode(response.body)
-
-
         contacts['feed']['entry'].each_with_index do |contact,index|
 
            name = contact['title']['$t']
            contact['gd$email'].to_a.each do |email|
             email_address = email['address']
-            current_user.contacts.create(:first_name => name, :email => email_address)  # for testing i m pushing it into database..
+            User.contacts.create(:first_name => name, :email => email_address)  # for testing i m pushing it into database..
           end
 
         end  
       rescue Exception => ex
          ex.message
       end
-
-      redirect_to user_path(current_user), :notice => "Invite or follow your Google contacts."+response.to_s+access_keys.to_s
+      redirect_to user_path(current_user), :notice => "Invite or follow your Google contacts."
 
 
     end
-
-
-
-
-
-  private
-  def auth_params
-    params.permit(:code, :provider)
-  end
 
 end
