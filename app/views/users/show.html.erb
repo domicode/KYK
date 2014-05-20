@@ -86,7 +86,8 @@
       <%= link_to tag, user_path(@user) + "?search_tags=" + tag + "&commit=Search+Tags", class: %w{s m l}[((weight/max_weight.to_f)*3).round-1] %>
     <% end %>
   </div>
-
+    <div id="contacts-partial">
     <%= render partial: "contact" %>
+    </div>
   <% end %>
 </div>

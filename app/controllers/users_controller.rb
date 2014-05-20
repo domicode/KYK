@@ -28,7 +28,12 @@ class UsersController < ApplicationController
     end
 
     @new_contacts = @user.contacts.where(new_contact: true)
-    
+        
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
+
   end
 
   def new

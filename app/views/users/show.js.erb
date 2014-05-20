@@ -1,0 +1,6 @@
+$(document).ready(function(){
+  console.log('nice job' + "<%= j(@user.first_name) %>");
+  $('#contacts-partial').html(
+    "<%= j(render partial: "contact") %>"
+  );
+});
