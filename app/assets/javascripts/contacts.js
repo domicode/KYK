@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+  $('#contact_tag_list').tagsInput();
 
   // Function to show contacts in full size and small size with a css trigger
   $(".contact").click(function(event){
