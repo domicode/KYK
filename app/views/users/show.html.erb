@@ -24,7 +24,7 @@
       <% end %>
 
       /* add yellow markers for contacts */
-      <% @user.contacts.each do |contact| %>
+      <% @contacts.each do |contact| %>
         <%  if contact.coordinates != nil %>
           var contact_marker = {
           "lng": <%= contact.coordinates[0] %>,
