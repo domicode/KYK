@@ -32,36 +32,59 @@ class User
   before_save :update_contacts_attributes, unless: :contacts_changed?
 
   def update_contacts_attributes
-      User.all.each do |user|
-        user.contacts.each do |contact|
-          if contact.user_id.to_s == self.id.to_s
-            contact.attributes.each do |key, value|
-              if key.to_s == "_id" || 
-                key.to_s == "user_id" || 
-                key.to_s == "coordinates" || 
-                key.to_s == "notes" || 
-                key.to_s == "connected" ||
-                key.to_s == "new_contact"
+    User.all.each do |user|
+      user.contacts.each do |contact|
+        if contact.user_id.to_s == self.id.to_s
+          contact.attributes.each do |key, value|
+            if key.to_s == "_id" || 
+              key.to_s == "user_id" || 
+              key.to_s == "coordinates" || 
+              key.to_s == "notes" || 
+              key.to_s == "connected" ||
+              key.to_s == "new_contact"
               
-              elsif self.attributes[key] != ""
-                contact.update({ key => self.attributes[key] })
-              end
+            elsif self.attributes[key] != ""
+              contact.update({ key => self.attributes[key] })
+            end
           end
         end
       end
     end
   end
 
-
-  def contacts_changed?
+  def tags_array
+    all_tags = []
     self.contacts.each do |contact|
-      return true if contact.changed?
+      unless contact.tags.nil?
+        contact.tags.each do |tag|
+          all_tags.push(tag) unless all_tags.include?(tag)
+        end
+      end
     end
-    return false
+    all_tags
   end
 
+  def tags_with_weight
+    all_tags_with_weight = Hash[self.tags_array.map { |tag| [tag, 0]}]
+    self.contacts.each do |contact|
+      unless contact.tags.nil?
+        contact.tags.each do |tag|
+          all_tags_with_weight[tag] += 1
+      end
+    end
+  end
+  all_tags_with_weight.to_a
+end
 
-  def address
+def contacts_changed?
+  self.contacts.each do |contact|
+    return true if contact.changed?
+  end
+  return false
+end
+
+
+def address
     # "#{@street}" + " #{@postal_code}" + " #{@city}" + " #{@country}"
     # "#{@street}" + " #{@city}" + " #{@country}"
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s

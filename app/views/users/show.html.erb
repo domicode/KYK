@@ -76,6 +76,9 @@
     <%= submit_tag "Search Tags" %>
   <% end %>
 
+  <p>tags_array: <%= @user.tags_array %></p>
+  <p>tags_with_weight: <%= @user.tags_with_weight %></p>
+
     <%= render partial: "contact" %>
   <% end %>
 </div>
