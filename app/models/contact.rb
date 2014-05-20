@@ -20,11 +20,24 @@ class Contact
   field :email, type: String
   field :connected, type: String
   field :new_contact, type: String
+  field :tags, :type => Array
 
   def address
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
     return full_address
   end
+
+  def tag_list=value
+
+    self.tags = Array.new
+    value.split(',').each do |tag|
+      self.tags.push(tag.strip) unless self.tags.include?(tag)
+    end
+  end
+
+  def tag_list
+    self.tags.join(', ') unless self.tags.nil?
+  end  
 
   embedded_in :user
 

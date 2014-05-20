@@ -11,18 +11,30 @@ class UsersController < ApplicationController
     end
   end
 
-    def show
-      @user = User.find(params[:id])
-      
-      if params[:search] && params[:search] != ""
-        @contacts = @user.contacts.where(first_name: params[:search])
-      else
-        @contacts = @user.contacts
+  def show
+    @user = User.find(params[:id])
+
+    if params[:search] && params[:search] != ""
+      @contacts = @user.contacts.where(first_name: params[:search])
+    elsif params[:search_tags] && params[:search_tags] != ""
+      search_tags = Array.new
+      params[:search_tags].split(',').each do |tag|
+        search_tags.push(tag.strip) unless search_tags.include?(tag)
       end
 
-      @new_contacts = @user.contacts.where(new_contact: true)
-      
+      @contacts = @user.contacts.where(:tags.in => search_tags)
+    else
+      @contacts = @user.contacts
     end
+
+    @new_contacts = @user.contacts.where(new_contact: true)
+        
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
+
+  end
 
   def new
     @user = User.new
@@ -109,9 +121,9 @@ class UsersController < ApplicationController
       user.contacts.each do |contact|
         if contact.email == @user.email
           contact.update({ 
-             'user_id' => @user.id,
-             'connected' => "connected",
-            })
+           'user_id' => @user.id,
+           'connected' => "connected",
+           })
           @user.contacts.create({
             'new_contact' => true,
             'email' => user.email,

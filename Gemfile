@@ -47,6 +47,8 @@ gem 'geocoder'
 gem 'underscore-rails'
 gem 'gmaps4rails'
 
+gem 'jquery-turbolinks'
+
 group :development do
   gem 'faker'
   gem 'quiet_assets'
