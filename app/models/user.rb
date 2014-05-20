@@ -25,7 +25,7 @@ class User
 
   embeds_many :contacts, :inverse_of => :contacts
   accepts_nested_attributes_for :contacts
-  embeds_many :authentications, :inverse_of => :authentications #, :dependent => :destroy (have to fix that)
+  has_many :authentications#, :inverse_of => :authentications #, :dependent => :destroy (have to fix that)
   accepts_nested_attributes_for :authentications
 
 
@@ -71,6 +71,5 @@ class User
     # "#{@street}" + " #{@city}" + " #{@country}"
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
     return full_address
-    puts "++++++++++++++++++++++"
   end
 end

@@ -15,6 +15,7 @@
       <%= link_to "Register", new_user_path %> |
       <%= link_to "Login", :login %>
       <%= link_to 'Login with google', auth_at_provider_path(:provider => :google) %>
+      <%= link_to 'Login with facebook', auth_at_provider_path(:provider => :facebook) %>
     <% end %>
 
     <% if current_user %>
