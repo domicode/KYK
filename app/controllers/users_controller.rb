@@ -104,15 +104,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @blacklist = ["salt", "crypted_password", "_id", "coordinates", "contacts", 
                   "updated_at", "created_at", "remember_me_token", "remember_me_token_expires_at"]
+    @contacts = @user.contacts.where(connected: "connected")
   end
 
   def push
     @keys = []
+    @contacts = []
     params.each do |key, value|
       @keys.push(key) if value.to_i == 1
+      @contacts.push(key) if value.to_i == 2
     end
-    puts @keys
-    current_user.update_contacts_attributes(@keys)
+
+    current_user.update_contacts_attributes(@keys, @contacts)
 
     redirect_to current_user
   end

@@ -36,13 +36,15 @@ class User
 
   # before_save :update_contacts_attributes, unless: :contacts_changed?
 
-  def update_contacts_attributes(keys)
+  def update_contacts_attributes(keys, permitted_contacts)
     User.all.each do |user|
-      user.contacts.each do |contact|
-        if contact.user_id.to_s == self.id.to_s
-          keys.each do |key|
-            unless self.attributes[key] == ""
-              contact.update({ key => self.attributes[key] })
+      if permitted_contacts.include?(user.id.to_s)
+        user.contacts.each do |contact|
+          if contact.user_id.to_s == self.id.to_s
+            keys.each do |key|
+              unless self.attributes[key] == ""
+                contact.update({ key => self.attributes[key] })
+              end
             end
           end
         end

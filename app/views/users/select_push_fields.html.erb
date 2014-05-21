@@ -7,5 +7,19 @@
         <%= check_box_tag(:"#{key}", value=1, checked=true) %><br>
       <% end %>
     <% end %>
+
+
+    <h1>select contacts</h1>
+    <% @contacts.each do |contact| %>
+      <%= label_tag(:"#{contact.user_id.to_s}", contact.email) %>
+      <%= check_box_tag(:"#{contact.user_id.to_s}", value=2, checked=true) %><br>
+    <% end %>
+
+
   <%= submit_tag "push to my contacts" %>
   <% end %>
+
+
+
+
+
