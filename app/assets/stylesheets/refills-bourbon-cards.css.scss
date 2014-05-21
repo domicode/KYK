@@ -3,7 +3,7 @@
 }
 
 .card {
-  @include span-columns(3);
+  // @include span-columns(3);
   $card-border-color: $base-border-color;
   $card-border: 1px solid $card-border-color;
   $card-background: lighten($card-border-color, 10);
@@ -22,10 +22,18 @@
   box-shadow: 0 2px 4px darken($base-body-color, 10);
   position: relative;
 
-  // @include media($large-screen) {
-  //   @include span-columns(4);  
-  //   @include omega(3n);
-  // }
+
+
+
+  @include media($medium-screen) {
+    @include span-columns(3);  
+    // @include omega(1n);
+  }
+
+  @include media($large-screen) {
+    @include span-columns(2);  
+    @include omega(5n);
+  }
 
   .card-image {
     overflow: hidden;

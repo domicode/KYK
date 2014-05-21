@@ -1,9 +1,14 @@
+// normalize
 @import "normalize";
+
+// bourbon (needed to install bitters from vendor stylesheets directory to create bitters/bitters)
 @import "bourbon";
 @import "bitters/bitters";
 @import "grid-settings";
 @import "neat-helpers";
 @import "neat";
+
+// bourbon refills
 @import "refills-bourbon-cards";
 
 @import "users";
