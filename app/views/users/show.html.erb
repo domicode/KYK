@@ -73,13 +73,12 @@
         <% end %>
       </div>
     <% end %>
-</div>  
+</div>
 
 <div id="map"></div>
 
 <div class="contacts">
   <% if @user.contacts.size > 0 %>
-    <h2>Contacts</h2>
 
   <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>
     <%= text_field_tag :search_tags, params[:search_tags] %>
@@ -98,8 +97,8 @@
       <% end %>
     <% end %>
   </div>
-    <div id="contacts-partial">
-    <%= render partial: "contact" %>
+    <div id="contacts-partial">      
+      <%= render partial: "contact" %>
     </div>
   <% end %>
 </div>
