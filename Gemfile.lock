@@ -44,6 +44,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bourbon (3.2.1)
+      sass (~> 3.2)
+      thor
     bson (2.2.2)
     builder (3.2.2)
     coderay (1.1.0)
@@ -183,6 +186,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
+  bourbon
   coffee-rails (~> 4.0.0)
   faker
   figaro
