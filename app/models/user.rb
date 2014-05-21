@@ -39,7 +39,7 @@ class User
   def update_contacts_attributes(keys, permitted_contacts)
     User.all.each do |user|
       if permitted_contacts.include?(user.id.to_s)
-        user.contacts.each do |contact|
+        user.contacts.each do |contact| #try to find the contacts by user.contacts.where(user_id: = self.id), might be faster
           if contact.user_id.to_s == self.id.to_s
             keys.each do |key|
               unless self.attributes[key] == ""
