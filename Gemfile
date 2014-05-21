@@ -49,6 +49,10 @@ gem 'gmaps4rails'
 
 gem 'jquery-turbolinks'
 
+gem 'bourbon'
+gem 'bitters'
+gem 'neat'
+
 group :development do
   gem 'faker'
   gem 'quiet_assets'
