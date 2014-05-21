@@ -54,7 +54,7 @@
              ex.message
           end
 
-          redirect_to user_path(current_user), :notice => "Invite or follow your Google contacts."
+          redirect_to user_path(current_user), :notice => "You added your google contacts"
 
 
         end

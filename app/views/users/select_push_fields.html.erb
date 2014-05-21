@@ -1,0 +1,11 @@
+<h1>Please select the fields to push</h1>
+
+  <%= form_tag(controller: "users", action: "push", method: "post") do %>
+    <% @user.attributes.each do |key, value| %>
+      <% unless @blacklist.include?(key) %>
+        <%= label_tag(:"#{key}", key.titleize) %>
+        <%= check_box_tag(:"#{key}", value=1, checked=true) %><br>
+      <% end %>
+    <% end %>
+  <%= submit_tag "push to my contacts" %>
+  <% end %>

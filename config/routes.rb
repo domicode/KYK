@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :contacts
   end
 
+  get '/users/:id/select_push_fields', to: 'users#select_push_fields', as: :select_push_fields
+  post '/users/:id/push', to: 'users#push', as: :push_info
+
   post '/addcontact/:user_id/:contact_id', to: 'users#add_contact'
 
   root to: 'users#index'

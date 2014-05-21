@@ -86,6 +86,8 @@ class UsersController < ApplicationController
     end
   end
 
+
+  # This method is for adding a new contact to the user as an embedded document
   def add_contact
     user = User.find(params[:user_id])
     @contact = user.contacts.where(id: params[:contact_id])
@@ -96,6 +98,26 @@ class UsersController < ApplicationController
       format.js {}
     end
   end
+
+
+  def select_push_fields
+    @user = User.find(params[:id])
+    @blacklist = ["salt", "crypted_password", "_id", "coordinates", "contacts", 
+                  "updated_at", "created_at", "remember_me_token", "remember_me_token_expires_at"]
+  end
+
+  def push
+    @keys = []
+    params.each do |key, value|
+      @keys.push(key) if value.to_i == 1
+    end
+    puts @keys
+    current_user.update_contacts_attributes(@keys)
+
+    redirect_to current_user
+  end
+
+
 
   private
   def set_user

@@ -49,8 +49,12 @@
 
 </script>
 
+<div class="push-info">
+  <%= link_to("push my contacts", select_push_fields_path(current_user)) %>
+</div>
+
 <div class="import-contacts">
-  <%= form_tag(controller: "import", action: "authenticate", method: "post", class: "nifty_form") do %>
+  <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>
   <%= submit_tag "import contacts" %>
   <% end %>
 </div>

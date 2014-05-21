@@ -34,21 +34,14 @@ class User
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, if: :password, presence: true
 
-  before_save :update_contacts_attributes, unless: :contacts_changed?
+  # before_save :update_contacts_attributes, unless: :contacts_changed?
 
-  def update_contacts_attributes
+  def update_contacts_attributes(keys)
     User.all.each do |user|
       user.contacts.each do |contact|
         if contact.user_id.to_s == self.id.to_s
-          contact.attributes.each do |key, value|
-            if key.to_s == "_id" || 
-              key.to_s == "user_id" || 
-              key.to_s == "coordinates" || 
-              key.to_s == "notes" || 
-              key.to_s == "connected" ||
-              key.to_s == "new_contact"
-              
-            elsif self.attributes[key] != ""
+          keys.each do |key|
+            unless self.attributes[key] == ""
               contact.update({ key => self.attributes[key] })
             end
           end
@@ -56,6 +49,7 @@ class User
       end
     end
   end
+
 
   def tags_array
     all_tags = []
