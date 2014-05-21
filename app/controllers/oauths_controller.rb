@@ -9,9 +9,7 @@ class OauthsController < ApplicationController
 
   def callback
     provider = auth_params[:provider]
-    if current_user
-      authorise
-    elsif @user = login_from(provider)
+    if @user = login_from(provider)
       redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
     else
       begin

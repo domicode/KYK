@@ -25,7 +25,7 @@ class User
 
   embeds_many :contacts, :inverse_of => :contacts
   accepts_nested_attributes_for :contacts
-  has_many :authentications#, :inverse_of => :authentications #, :dependent => :destroy (have to fix that)
+  has_many :authentications, :dependent => :destroy 
   accepts_nested_attributes_for :authentications
 
 
