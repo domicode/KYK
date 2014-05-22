@@ -71,9 +71,10 @@ body {
 //   transition: 0.5s;
 // }
 
-// .connected {
-//   background: green;
-// }
+.connected {
+  box-shadow: $kyk-green 2px 2px 10px;
+  // background: green;
+}
 
 
 // .contactfullsize {
