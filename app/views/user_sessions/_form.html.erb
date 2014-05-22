@@ -1,4 +1,5 @@
 <%= form_tag user_sessions_path, :method => :post do %>
+<div class="kyk-login">
   <div class="field">
     <%= label_tag :email %><br />
     <%= text_field_tag :email %>
@@ -10,4 +11,5 @@
   <div class="actions">
     <%= submit_tag "Login" %>
   </div>
+</div>
 <% end %>

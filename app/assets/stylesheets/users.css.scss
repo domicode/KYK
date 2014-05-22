@@ -23,11 +23,14 @@
 }
 
 #nav-logo {
-  @include span-columns(2);
-  color: $kyk-white;
+  @include span-columns(2);  
   text-align: left;
   width: 10%;  
   font-size: 3em;
+  & > a {
+    color: $kyk-white;
+    text-decoration: none; 
+  }
 }
 
 #nav-right {
@@ -58,7 +61,6 @@ body {
 .new-contact-list {
   display: none;
 }
-
 
 #map {
   box-shadow: $kyk-blue 2px 2px 10px;
