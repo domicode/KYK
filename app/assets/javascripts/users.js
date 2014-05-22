@@ -16,5 +16,35 @@ $(document).ready(function(){
     });
 
 
+    $("#tag_cloud").click(function(event){
+
+        event.preventDefault();
+        $(this).children().css({backgroundColor: 'none'})
+        $(event.target).css({backgroundColor: 'black'})
+
+        $.ajax({
+            url: event.target.href,
+            type: 'GET',
+            dataType: 'script'
+        });
+    });
+
+
+    $("#clearSearch").click(function(){
+
+        event.preventDefault();
+        $("#tag_cloud").children().css({backgroundColor: 'none'})
+        $("#search_tags").val("")
+        
+        var action = window.location.origin + window.location.pathname;
+
+        $.ajax({
+            url: action,
+            type: 'GET',
+            dataType: 'script'
+        });
+    });
+
+
 
 });

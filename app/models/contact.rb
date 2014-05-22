@@ -20,7 +20,8 @@ class Contact
   field :email, type: String
   field :connected, type: String
   field :new_contact, type: String
-  field :tags, :type => Array
+  field :tags, type: Array
+  field :profile_picture, type: String
 
   def address
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
