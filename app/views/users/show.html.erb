@@ -83,6 +83,7 @@
   <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>
     <%= text_field_tag :search_tags, params[:search_tags] %>
     <%= submit_tag "Search Tags" %>
+    <%= submit_tag "Clear search", id: "clearSearch" %>
   <% end %>
 
   <p>tags_array: <%= @user.tags_array %></p>

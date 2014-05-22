@@ -16,5 +16,29 @@ $(document).ready(function(){
     });
 
 
+    $("#tag_cloud").click(function(event){
+
+        event.preventDefault();
+
+        $.ajax({
+            url: event.target.href,
+            type: 'GET',
+            dataType: 'script'
+        });
+    });
+
+
+    $("#clearSearch").click(function(){
+
+        var action = window.location.origin + window.location.pathname;
+
+        $.ajax({
+            url: action,
+            type: 'GET',
+            dataType: 'script'
+        });
+    });
+
+
 
 });
