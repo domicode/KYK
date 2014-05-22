@@ -8,7 +8,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
+gem 'spring',                    group: :development
 gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 # gem 'debugger', group: [:development, :test]
@@ -35,7 +35,7 @@ gem 'geocoder'
 
 # image and image upload gems
 gem 'rmagick', :require => 'RMagick'
-gem "mongoid-paperclip", :require => "mongoid_paperclip"
+gem 'mongoid-paperclip', :require => 'mongoid_paperclip'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'mongoid-grid_fs'
 gem 'fog'
