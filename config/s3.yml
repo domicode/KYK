@@ -1,7 +1,6 @@
 development:
   access_key_id: Figaro.env.amazon_key
   secret_code: Figaro.env.amazon_secret
-
 production:
   access_key_id: Figaro.env.amazon_key
   secret_code: Figaro.env.amazon_key

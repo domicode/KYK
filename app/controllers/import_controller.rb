@@ -61,14 +61,20 @@
               picture = http.request(request)
               p = picture.body
 
-              img = Magick::Image.from_blob(p).first
-              fmt = img.format
-              data=StringIO.new(p)
-              data.class.class_eval { attr_accessor :original_filename, :content_type }
-              data.original_filename = Time.now.to_i.to_s+"."+fmt
-              data.content_type='image.jpeg'
-              img.write(data.original_filename)
-              @contact.update(:profile_picture => data.original_filename)
+              # img = Magick::Image.from_blob(p).first
+              # fmt = img.format
+              # data=StringIO.new(p)
+              # data.class.class_eval { attr_accessor :original_filename, :content_type }
+              # data.original_filename = Time.now.to_i.to_s+"."+fmt
+              # data.content_type='image.jpeg'
+              # img.write(data.original_filename)
+
+              file = StringIO.new(p) #mimic a real upload file
+              file.class.class_eval { attr_accessor :original_filename, :content_type } #add attr's that paperclip needs
+              file.original_filename = Time.now.to_i.to_s+".jpeg" #assign filename in way that paperclip likes
+              file.content_type = "image/jpeg" # you could set this manually aswell if needed e.g 'application/pdf'
+
+              @contact.avatar = file
 
               @contact.save
 

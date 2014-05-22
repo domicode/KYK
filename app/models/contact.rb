@@ -21,7 +21,14 @@ class Contact
   field :tags, type: Array
   field :profile_picture, type: String
 
-  has_mongoid_attached_file :avatar
+  has_mongoid_attached_file :avatar,
+    :storage => :s3,
+    :bucket => 'kyk_test',
+    :s3_credentials => {
+      :access_key_id => Figaro.env.amazon_key,
+      :secret_access_key => Figaro.env.amazon_secret
+    }
+  validates_attachment_content_type :avatar, :content_type => /\Aimage/
 
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
