@@ -40,38 +40,40 @@
 
             contacts = ActiveSupport::JSON.decode(response.body)
 
-
+            # Starting from here we start taking apart the response and save it
             contacts['feed']['entry'].each_with_index do |contact,index|
 
-               name = contact['title']['$t']
-               
-               # address = contact['gd$postalAddress'][0]['$t']
-               contact['gd$email'].to_a.each do |email|
+             name = contact['title']['$t']
+
+              # address = contact['gd$postalAddress'][0]['$t']
+              contact['gd$email'].to_a.each do |email|
                 email_address = email['address']
                 @contact = current_user.contacts.new(:first_name => name, :email => email_address) 
-               end
+              end
 
-               id = contact['id']['$t'].split("/").last
-               uri = URI.parse("https://www.google.com/m8/feeds/photos/media/default/"+id+"/full?oauth_token="+access_keys['access_token'].to_s)
-               http = Net::HTTP.new(uri.host, uri.port)
-               http.use_ssl = true
-               http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-               request = Net::HTTP::Get.new(uri.request_uri)
-               picture = http.request(request)
-               p = picture.body
+              # Here we get the picture for each contact, we need a new request for that with the contact id
+              id = contact['id']['$t'].split("/").last
+              uri = URI.parse("https://www.google.com/m8/feeds/photos/media/default/"+id+"/full?oauth_token="+access_keys['access_token'].to_s)
+              http = Net::HTTP.new(uri.host, uri.port)
+              http.use_ssl = true
+              http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+              request = Net::HTTP::Get.new(uri.request_uri)
+              picture = http.request(request)
+              p = picture.body
 
-               img = Magick::Image.from_blob(p).first
-               fmt = img.format
-               data=StringIO.new(p)
-               data.class.class_eval { attr_accessor :original_filename, :content_type }
-               data.original_filename = Time.now.to_i.to_s+"."+fmt
-               data.content_type='image.jpeg'
-               img.write(data.original_filename)
-               @contact.update(:profile_picture => data.original_filename)
+              img = Magick::Image.from_blob(p).first
+              fmt = img.format
+              data=StringIO.new(p)
+              data.class.class_eval { attr_accessor :original_filename, :content_type }
+              data.original_filename = Time.now.to_i.to_s+"."+fmt
+              data.content_type='image.jpeg'
+              img.write(data.original_filename)
+              @contact.update(:profile_picture => data.original_filename)
 
-               @contact.save
+              @contact.save
 
             end  
+
           rescue Exception => ex
              ex.message
           end
