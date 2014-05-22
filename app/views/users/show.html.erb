@@ -80,15 +80,6 @@
 <div class="contacts">
   <% if @user.contacts.size > 0 %>
 
-  <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>
-    <%= text_field_tag :search_tags, params[:search_tags] %>
-    <%= submit_tag "Search Tags" %>
-    <%= submit_tag "Clear search", id: "clearSearch" %>
-  <% end %>
-
-  <p>tags_array: <%= @user.tags_array %></p>
-  <p>tags_with_weight: <%= @user.tags_with_weight %></p>
-
   <div id="tag_cloud">
     <% if !@user.tags_with_weight.empty? %>
       <% user_tags_with_weight = @user.tags_with_weight %>
@@ -97,6 +88,13 @@
         <%= link_to tag, user_path(@user) + "?search_tags=" + tag + "&commit=Search+Tags", class: %w{s m l}[((weight/max_weight.to_f)*3).round-1] %>
       <% end %>
     <% end %>
+
+  <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>    
+    <%= submit_tag "Search Tags" %>
+    <%= submit_tag "Clear search", id: "clearSearch" %>
+    <%= text_field_tag :search_tags, params[:search_tags] %>
+  <% end %>
+    
   </div>
     <div id="contacts-partial">      
       <%= render partial: "contact" %>
