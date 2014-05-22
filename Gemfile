@@ -53,6 +53,8 @@ gem 'bourbon'
 gem 'bitters'
 gem 'neat'
 
+gem 'rmagick', :require => 'RMagick'
+
 group :development do
   gem 'faker'
   gem 'quiet_assets'
