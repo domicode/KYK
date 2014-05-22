@@ -60,7 +60,6 @@
                picture = http.request(request)
                p = picture.body
 
-               # bytes = p.read
                img = Magick::Image.from_blob(p).first
                fmt = img.format
                data=StringIO.new(p)
@@ -68,13 +67,9 @@
                data.original_filename = Time.now.to_i.to_s+"."+fmt
                data.content_type='image.jpeg'
                img.write(data.original_filename)
-               # current_user.profilepic = data
-               # current_user.save
                @contact.update(:profile_picture => data.original_filename)
 
                @contact.save
-
-
 
             end  
           rescue Exception => ex

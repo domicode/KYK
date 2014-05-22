@@ -4,7 +4,11 @@
       <div class="card">
         <div class="contact <%= contact.connected %>">
           <div class="card-image">
+            <% if contact.profile_picture == "" %>
             <img src="http://placehold.it/350x150" alt="Contact Photo">
+            <% else %>
+            <img src="<%= contact.profile_picture %>">
+            <% end %>
           </div>
           <div class="card-header">        
             <p><%= contact.first_name %> <%= contact.last_name %></p>
