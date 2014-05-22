@@ -32,7 +32,7 @@
 
   @include media($large-screen) {
     @include span-columns(2);  
-    @include omega(5n);
+    @include omega(4n);
   }
 
   .card-image {
