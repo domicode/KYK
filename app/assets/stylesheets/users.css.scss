@@ -50,6 +50,25 @@ body {
   margin: 10px;
 } 
 
+#search-form
+{
+  @include span-columns(12);  
+  & > #search {
+    @include span-columns(4);  
+  }
+}
+
+.contacts {
+  @include span-columns(12);  
+}
+
+#tag-search-form
+{
+  // @include span-columns(12);  
+  & > #search_tags {
+    @include span-columns(6);  
+  }
+}
 
 .new-contacts {
   position: absolute; 
