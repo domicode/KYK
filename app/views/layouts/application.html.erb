@@ -8,17 +8,23 @@
 </head>
 <body>
   <div id="nav">
-    <% if current_user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
-      <%= link_to "Logout", :logout, method: :post %>
-    <% else %>
-      <%= link_to "Register", new_user_path %> |
-      <%= link_to "Login", :login %>
-      <%= link_to 'Login with google', auth_at_provider_path(:provider => :google) %>
-      <%= link_to 'Login with facebook', auth_at_provider_path(:provider => :facebook) %>
-    <% end %>
-
-    <% if current_user %>
+    <div id="nav-logo">
+      <%= link_to "KYK", :root %>
+    </div>
+    <div id="nav-right">
+      <% if current_user %>
+        <%= link_to "Edit Profile", edit_user_path(current_user.id) %> |
+        <%= link_to "Logout", :logout, method: :post %>
+      <% else %>        
+        <%= link_to "Login", :login %> |
+        <%= link_to "Register", new_user_path %> |
+        <%= link_to 'Login with Google', auth_at_provider_path(:provider => :google) %> |
+        <%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %>
+      <% end %>
+    </div>
+  </div>
+  <div id="main">
+      <% if current_user %>
       <div class="new-contact">
         <%= link_to "Add a contact", new_user_contact_path(current_user.id) %>
       </div>
@@ -38,14 +44,12 @@
       </div>
     <% end %>
 
-  </div>
-
   <div>
     <p id="notice"><%= flash[:notice] %></p>
     <p id="alert"><%= flash[:alert] %></p>
   </div>
 
-<%= yield %>
-
+  <%= yield %>
+  </div>
 </body>
 </html>
