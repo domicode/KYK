@@ -53,29 +53,31 @@ class User
   end
 
 
-  def tags_array
-    all_tags = []
-    self.contacts.each do |contact|
-      unless contact.tags.nil?
-        contact.tags.each do |tag|
-          all_tags.push(tag) unless all_tags.include?(tag)
-        end
+def tags_array
+  all_tags = []
+  self.contacts.each do |contact|
+    unless contact.tags.nil?
+      contact.tags.each do |tag|
+        all_tags.push(tag) unless all_tags.include?(tag)
       end
     end
-    all_tags
   end
+  all_tags
+end
 
-  def tags_with_weight
-    all_tags_with_weight = Hash[self.tags_array.map { |tag| [tag, 0]}]
-    self.contacts.each do |contact|
-      unless contact.tags.nil?
-        contact.tags.each do |tag|
-          all_tags_with_weight[tag] += 1
+
+def tags_with_weight
+  all_tags_with_weight = Hash[self.tags_array.map { |tag| [tag, 0]}]
+  self.contacts.each do |contact|
+    unless contact.tags.nil?
+      contact.tags.each do |tag|
+        all_tags_with_weight[tag] += 1
       end
     end
   end
   all_tags_with_weight.to_a
 end
+
 
 def contacts_changed?
   self.contacts.each do |contact|

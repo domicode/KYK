@@ -3,11 +3,9 @@ class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
-
-
+  include Mongoid::Paperclip
   include Geocoder::Model::Mongoid
-  geocoded_by :address               # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+
 
   field :user_id, type: String
   field :first_name, type: String
@@ -22,6 +20,16 @@ class Contact
   field :new_contact, type: String
   field :tags, type: Array
   field :profile_picture, type: String
+
+  has_mongoid_attached_file :avatar
+
+  geocoded_by :address               # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+
+  embedded_in :user
+
+  #validates :email, uniqueness: true
+
 
   def address
     full_address = street.to_s + ", " + city.to_s + ", " + country.to_s
@@ -39,9 +47,5 @@ class Contact
   def tag_list
     self.tags.join(', ') unless self.tags.nil?
   end  
-
-  embedded_in :user
-
-  #validates :email, uniqueness: true
 
 end
