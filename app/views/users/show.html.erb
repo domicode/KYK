@@ -71,20 +71,18 @@
     <div class="name-search">
       <%= form_tag user_path(current_user), method: :get, id: 'search-form' do %>
         <%= text_field_tag :search, params[:search], placeholder: "search by first name" %>
-        <%= submit_tag "search" %>
-        <%= submit_tag "clear", id: "clearSearch" %>
+        <%= submit_tag "search" %><%= submit_tag "clear", id: "clearSearch" %>
       <% end %>
     </div>
 
     <div class="tag-search">
       <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>    
         <%= text_field_tag :search_tags, params[:search_tags], placeholder: "search by tag" %>  
-        <%= submit_tag "search" %>
-        <%= submit_tag "clear", id: "clearSearch" %>
+        <%= submit_tag "search" %><%= submit_tag "clear", id: "clearSearch" %>
       <% end %>
     </div>
 
-    <div class="search-type"><button>Click to change search type</button></div>
+    <div class="search-type"><button>change search type</button></div>
   </div>
 
 
@@ -126,10 +124,6 @@
   <% end %>
 </div>
 
-
-
-
-<div id="map-trigger">Toggle map</div>
 <div id="map"></div>
 
 <div class="cards">

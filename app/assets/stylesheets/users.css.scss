@@ -108,18 +108,18 @@ body {
 {
   @include span-columns(10);  
   & > #search {
-    @include span-columns(4);  
+    @include span-columns(6);  
   }
 }
 
 #tag-search-form
 {
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
 
     & > input[type="submit"] {
       // background-color: #000;
       float: left;
-      margin-right: 10px;
+      // margin-right: 10px;
     }
 
   & > #search_tags {
@@ -204,12 +204,34 @@ body {
   }
 }
 
+.subnavigation {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.subnavigation input, button {
+  position: relative;
+  float: left;
+  text-decoration: none;
+  color: white;
+  height: 40px;
+  border-right: 1px solid black;
+}
+
+.subnavigation button a {
+  text-decoration: none;
+  color: white;
+}
+
 .tag-search {
   display: none;
+  float: left;
+  width: 400px;
 }
 
 .name-search {
-
+  float:left;
+  width: 400px;
 }
 
 .new-contact-list {
@@ -242,6 +264,8 @@ body {
 #tag_cloud, #tag_cloud_push {
   width: 400px;
   line-height: 1.6em;
+  margin: 0 auto;
+  margin-top: 20px;
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
