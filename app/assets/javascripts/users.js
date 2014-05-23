@@ -64,5 +64,10 @@ $(document).ready(function(){
     $("#map").toggle();
   });
 
+  $(".search-type").click(function(event){
+    $(".tag-search").toggle();
+    $(".name-search").toggle();
+  });
+
 
 });
