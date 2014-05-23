@@ -37,9 +37,10 @@
 
   .card-image {
     overflow: hidden;
-    max-height: 150px;
+    max-width: 96px;
+    margin: 0 auto;
 
-    img {
+    img {      
       width: 100%;
       @include transition (all 0.2s ease-in-out);
       background: $card-image-background;
