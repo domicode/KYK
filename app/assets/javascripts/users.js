@@ -35,11 +35,11 @@ $(document).ready(function(){
         $(this).children().css({backgroundColor: 'none'})
         $(event.target).css({backgroundColor: 'black'})
 
-        // $.ajax({
-        //     url: event.target.href,
-        //     type: 'GET',
-        //     dataType: 'script'
-        // });
+        $.ajax({
+            url: event.target.href,
+            type: 'GET',
+            dataType: 'script'
+        });
     });
 
 

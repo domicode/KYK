@@ -18,19 +18,14 @@
           <% user_tags_with_weight = @user.tags_with_weight %>
           <% max_weight = user_tags_with_weight.max_by(&:last)[1] %>
           <% user_tags_with_weight.each do |tag, weight| %>
-          <%= link_to tag, user_path(@user) + "?search_tags=" + tag + "&commit=Search+Tags", class: %w{s m l}[((weight/max_weight.to_f)*3).round-1] %>
+          <%= link_to tag, user_path(@user) +"/"+ tag, class: %w{s m l}[((weight/max_weight.to_f)*3).round-1] %>
           <% end %>
         <% end %>
         <%= link_to("all", "url", class: "l") %>
       </div>
 
       <div class="push-contacts">
-        <% @contacts.each do |contact| %>
-          <div class="contact-field">
-            <%= label_tag(:"#{contact.user_id.to_s}", contact.email, class: "label" ) %>
-            <%= check_box_tag(:"#{contact.user_id.to_s}", value=2, checked=true, class: "checkbox") %><br>
-          </div>
-        <% end %>
+      <%= render partial: "push_contact" %>
       </div>
     </div>
 

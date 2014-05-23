@@ -121,6 +121,22 @@ class UsersController < ApplicationController
   end
 
 
+  def filter_push_contacts
+    @user = current_user
+    tag = params[:tag]
+    if tag == "url"
+      @contacts = @user.contacts.where(connected: "connected")
+    else
+      @contacts = @user.contacts.where(tags: tag, connected: "connected")
+    end
+    
+    respond_to do |format|
+      format.js {}
+      format.html {}
+    end
+  end
+
+
 
   private
   def set_user
