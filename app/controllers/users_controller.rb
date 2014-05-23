@@ -34,6 +34,8 @@ class UsersController < ApplicationController
       format.html {}
     end
 
+    select_push_fields
+
   end
 
   def new
@@ -104,7 +106,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @blacklist = ["salt", "crypted_password", "_id", "coordinates", "contacts", 
                   "updated_at", "created_at", "remember_me_token", "remember_me_token_expires_at"]
-    @contacts = @user.contacts.where(connected: "connected")
+    @pushcontacts = @user.contacts.where(connected: "connected")
   end
 
   def push
@@ -125,9 +127,9 @@ class UsersController < ApplicationController
     @user = current_user
     tag = params[:tag]
     if tag == "url"
-      @contacts = @user.contacts.where(connected: "connected").asc(:last_name)
+      @pushcontacts = @user.contacts.where(connected: "connected").asc(:last_name)
     else
-      @contacts = @user.contacts.where(tags: tag, connected: "connected").asc(:last_name)
+      @pushcontacts = @user.contacts.where(tags: tag, connected: "connected").asc(:last_name)
     end
     
     respond_to do |format|
