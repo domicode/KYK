@@ -29,6 +29,19 @@ $(document).ready(function(){
         });
     });
 
+    $("#tag_cloud_push").click(function(event){
+
+        event.preventDefault();
+        $(this).children().css({backgroundColor: 'none'})
+        $(event.target).css({backgroundColor: 'black'})
+
+        // $.ajax({
+        //     url: event.target.href,
+        //     type: 'GET',
+        //     dataType: 'script'
+        // });
+    });
+
 
     $("#clearSearch").click(function(){
 
