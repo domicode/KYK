@@ -1,0 +1,6 @@
+<% @contacts.each do |contact| %>
+  <div class="contact-field">
+    <%= label_tag(:"#{contact.user_id.to_s}", contact.email, class: "label" ) %>
+    <%= check_box_tag(:"#{contact.user_id.to_s}", value=2, checked=true, class: "checkbox") %><br>
+  </div>
+<% end %>

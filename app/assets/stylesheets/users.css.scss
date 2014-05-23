@@ -151,7 +151,7 @@ body {
   // display: none; // there is a bug
 }
 
-#tag_cloud {
+#tag_cloud, #tag_cloud_push {
   width: 400px;
   line-height: 1.6em;
   .s { font-size: 0.8em; }
@@ -161,4 +161,25 @@ body {
 
 .connected {
   box-shadow: $kyk-green 2px 2px 10px;
+}
+
+
+.contact-field {
+  // position: relative;
+  // float: left;
+  margin: 10px;
+}
+
+
+.label {
+  position: relative;
+  float: left;
+}
+
+
+.checkbox {
+  float: left;
+  position: relative;
+  margin-top: 5px;
+  margin-left: 10px;
 }

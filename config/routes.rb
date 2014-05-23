@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get '/users/:id/select_push_fields', to: 'users#select_push_fields', as: :select_push_fields
   post '/users/:id/push', to: 'users#push', as: :push_info
+  get '/users/:id/:tag', to: 'users#filter_push_contacts'
+
 
   post '/addcontact/:user_id/:contact_id', to: 'users#add_contact'
 
