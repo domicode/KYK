@@ -42,7 +42,7 @@
   color: $kyk-white;
   text-align: right;
 
-  @include media(100px) {
+  @include media(0px) {
     font-size: .7rem;
   }
 
@@ -72,8 +72,23 @@ body {
 #tag-search-form
 {
   margin-bottom: 50px;
+  @include media(0px) {
+    font-size: .7rem;
+  }
+
+  @include media(550px) {
+    font-size: 1rem;
+  }
+
+
   & > #search_tags {
-    @include span-columns(6);  
+    @include media(0px) {
+      @include span-columns(4);
+    }
+
+    @include media(550px) {
+      @include span-columns(6);
+    }
   }
 }
 

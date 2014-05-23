@@ -45,6 +45,9 @@ $(document).ready(function(){
         });
     });
 
+  $("#map-trigger").click(function(event){
+    $("#map").toggle();
+  });
 
 
 });
