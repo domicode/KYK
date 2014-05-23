@@ -99,12 +99,45 @@
 </div>
 
 
+  <div class="subnavigation">
 
-<div class="import-contacts">
-  <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>
-  <%= submit_tag "import contacts" %>
-  <% end %>
-</div>
+    <% if current_user %>      
+      <div class="user-information" id="<%= @current_user.id %>">
+        <div class="push-info">
+          <button><%= link_to("Push to my contacts", select_push_fields_path(current_user)) %></button>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="import-contacts">
+      <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>
+      <%= submit_tag "import contacts" %>
+      <% end %>
+    </div>
+
+    <div class="new-contact">
+      <button><%= link_to "Add a contact", new_user_contact_path(current_user.id) %></button>
+    </div>
+
+    <div class="name-search">
+      <%= form_tag user_path(current_user), method: :get, id: 'search-form' do %>
+        <%= text_field_tag :search, params[:search], placeholder: "search by first name" %>
+        <%= submit_tag "search" %><%= submit_tag "clear", id: "clearSearch" %>
+      <% end %>
+    </div>
+
+    <div class="tag-search">
+      <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>    
+        <%= text_field_tag :search_tags, params[:search_tags], placeholder: "search by tag" %>  
+        <%= submit_tag "search" %><%= submit_tag "clear", id: "clearSearch" %>
+      <% end %>
+    </div>
+
+    <div class="search-type"><button>change search type</button></div>
+  </div>
+
+
+
 
 
 <div class="new-contacts">
@@ -130,9 +163,6 @@
     <% end %>
 </div>
 
-<div id="map-trigger">Toggle map</div>
-<div id="map"></div>
-
 <% if @user.contacts.size > 0 %>
 
 <div id="tag_cloud">
@@ -145,13 +175,7 @@
   <% end %>
 </div>
 
-
-<%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>    
-  <%= text_field_tag :search_tags, params[:search_tags] %>  
-  <%= submit_tag "Search Tags" %>
-  <%= submit_tag "Clear search", id: "clearSearch" %>
-<% end %>
-
+<div id="map"></div>
 
 <div class="cards">
   <div class="contacts">    

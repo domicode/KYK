@@ -25,6 +25,25 @@ input[type="submit"] {
   }
 }
 
+// .push-info {
+//   @extend button;
+  
+//   a {
+//     color: #FFF; 
+//     text-decoration: none; 
+//   } 
+
+//   @include media(0px) {
+//     font-size: .7rem;
+//     width: 120px;
+//   }
+
+//   @include media($kyk-medium-screen) {
+//     font-size: 1rem;
+//     width: 160px;
+//   }
+// }
+
 #nav {
   background-color: lighten($kyk-dark-blue, 10%);  
   padding-top: 1rem;
@@ -46,6 +65,7 @@ input[type="submit"] {
 }
 
 #nav-logo {
+  color: $kyk-white;
   @include span-columns(2);  
   text-align: left;
   width: 10%;  
@@ -57,9 +77,8 @@ input[type="submit"] {
 }
 
 #nav-right {
-  color: $kyk-white;
   text-align: right;
-
+  color: #FFF;
   @include media(0px) {
     font-size: .7rem;
   }
@@ -89,18 +108,18 @@ body {
 {
   @include span-columns(10);  
   & > #search {
-    @include span-columns(4);  
+    @include span-columns(6);  
   }
 }
 
 #tag-search-form
 {
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
 
     & > input[type="submit"] {
       // background-color: #000;
       float: left;
-      margin-right: 10px;
+      // margin-right: 10px;
     }
 
   & > #search_tags {
@@ -185,6 +204,45 @@ body {
   }
 }
 
+.subnavigation {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.subnavigation input, button {
+  position: relative;
+  float: left;
+  text-decoration: none;
+  color: white;
+  height: 40px;
+  border-right: 1px solid black;
+}
+
+.subnavigation button a {
+  text-decoration: none;
+  color: white;
+}
+
+.tag-search {
+  display: none;
+  float: left;
+  width: 400px;
+  margin-left: 20px;
+}
+
+.name-search {
+  float:left;
+  width: 400px;
+  margin-left: 20px;
+}
+
+#search {
+  border: none;
+  -moz-box-shadow:    inset 0 0 5px #000000;
+  -webkit-box-shadow: inset 0 0 5px #000000;
+  box-shadow:         inset 0 0 5px #000000;
+}
+
 .new-contact-list {
   display: none;
 }
@@ -195,11 +253,11 @@ body {
   width: 70%; 
   min-width: 450px;
   height: 300px; // need to make it show
-  margin-top: 40px;
+  margin-top: 10px;
   // border: 2px solid #2f5db5; 
   border-radius: 40px 0px 40px 0px;
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   // display: none; // there is a bug
 
   @include media(0px) {
@@ -215,9 +273,12 @@ body {
 #tag_cloud, #tag_cloud_push {
   width: 400px;
   line-height: 1.6em;
-  .s { font-size: 0.8em; padding: 2px 5px;}
-  .m { font-size: 1.2em; padding: 2px 5px;}
-  .l { font-size: 1.8em; padding: 2px 5px;}
+  margin: 0 auto;
+  margin-top: 20px;
+  .s { font-size: 0.8em; }
+  .m { font-size: 1.2em; }
+  .l { font-size: 1.8em; }
+
 }
 
 .connected {
@@ -399,5 +460,11 @@ body {
 
   .modal-state:checked + .modal-window .modal-inner {
     top: 0;
+
+.first-name {
+
+  a {
+    color: $kyk-white;
+    text-decoration: none; 
   }
 }
