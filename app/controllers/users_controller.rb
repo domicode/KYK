@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
       @contacts = @user.contacts.where(:tags.in => search_tags)
     else
-      @contacts = @user.contacts
+      @contacts = @user.contacts.asc(:last_name)
     end
 
     @new_contacts = @user.contacts.where(new_contact: true)
@@ -125,9 +125,9 @@ class UsersController < ApplicationController
     @user = current_user
     tag = params[:tag]
     if tag == "url"
-      @contacts = @user.contacts.where(connected: "connected")
+      @contacts = @user.contacts.where(connected: "connected").asc(:last_name)
     else
-      @contacts = @user.contacts.where(tags: tag, connected: "connected")
+      @contacts = @user.contacts.where(tags: tag, connected: "connected").asc(:last_name)
     end
     
     respond_to do |format|

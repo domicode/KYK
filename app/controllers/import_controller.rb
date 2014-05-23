@@ -51,6 +51,9 @@
                 @contact = current_user.contacts.new(:first_name => name, :email => email_address) 
               end
 
+              @contact.first_name = name.split(" ")[0]
+              @contact.last_name = name.split(" ")[1]
+
               # Here we get the picture for each contact, we need a new request for that with the contact id
               id = contact['id']['$t'].split("/").last
               uri = URI.parse("https://www.google.com/m8/feeds/photos/media/default/"+id+"/full?oauth_token="+access_keys['access_token'].to_s)
