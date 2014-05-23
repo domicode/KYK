@@ -62,15 +62,23 @@
 <div class="new-contacts">
   <% if @new_contacts.size > 0 %>
     <button class="new-contacts-button">new contacts</button>
-      <div class="new-contact-list">      
-        <% @new_contacts.each do |contact| %>
-          <div class="new-contact" id="<%= contact.id %>">
-            <li><%= contact.first_name %> <%= contact.last_name %> <%= contact.email %></li>
-            <button class="addContact" id="<%= contact.id %>">Add</button>
+    <div class="new-contact-list">      
+      <% @new_contacts.each do |contact| %>
+
+        <div class="new-contact" id="<%= contact.id %>">
+
+          <div class="search-buttons">
+            <button class="addContact" id="<%= contact.id %>">+</button>
             <button class="refuseContact" id="<%= contact.id %>">-</button>
           </div>
-        <% end %>
-      </div>
+          
+          <div class="contact-info">
+            <li><%= contact.first_name %> <%= contact.last_name %> <%= contact.email %></li>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
     <% end %>
 </div>
 
@@ -91,7 +99,7 @@
 
 
 <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>    
-  <%= text_field_tag :search_tags, params[:search_tags] %>
+  <%= text_field_tag :search_tags, params[:search_tags] %>  
   <%= submit_tag "Search Tags" %>
   <%= submit_tag "Clear search", id: "clearSearch" %>
 <% end %>
