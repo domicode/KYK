@@ -16,6 +16,13 @@ input[type="submit"] {
   background-color: lighten($kyk-dark-blue, 10%);  
   color: #FFF;
   font-family: "Century Gothic", Arial, sans-serif;
+  @include media(0px) {
+    font-size: .7rem;
+  }
+
+  @include media($kyk-medium-screen) {
+    font-size: 1rem;
+  }
 }
 
 #nav {
@@ -57,7 +64,7 @@ input[type="submit"] {
     font-size: .7rem;
   }
 
-  @include media(550px) {
+  @include media($kyk-medium-screen) {
     font-size: 1rem;
   }
 }
@@ -65,7 +72,13 @@ input[type="submit"] {
 body {
   font-family: "Century Gothic", Arial, sans-serif;
   background-color: lighten($kyk-white, 10%); 
+ @include media(0px) {
+    font-size: .7rem;
+  }
 
+  @include media($kyk-medium-screen) {
+    font-size: 1rem;
+  }
 } 
 
 #main {
@@ -83,21 +96,19 @@ body {
 #tag-search-form
 {
   margin-bottom: 50px;
-  @include media(0px) {
-    font-size: .7rem;
-  }
 
-  @include media(550px) {
-    font-size: 1rem;
-  }
-
+    & > input[type="submit"] {
+      // background-color: #000;
+      float: left;
+      margin-right: 10px;
+    }
 
   & > #search_tags {
     @include media(0px) {
       @include span-columns(4);
     }
 
-    @include media(550px) {
+    @include media($kyk-medium-screen) {
       @include span-columns(6);
     }
   }
@@ -105,16 +116,16 @@ body {
 
 .new-contacts {  
   position: absolute; 
-  top: 70px; 
-  right: 10px;
-  width: 200px;
+  top: 10px; 
+  right: 150px;
+  width: 150px;
   // font-family: $helvetica; 
 
     @include media(0px) {
     font-size: .7rem;
   }
 
-  @include media(550px) {
+  @include media($kyk-medium-screen) {
     font-size: 1rem;
   }
 
@@ -123,6 +134,8 @@ body {
     top: 0px;
     right: 0px;
     // left: 70px;
+    // border: 1px solid #FFF; 
+    border-bottom: 1px solid #FFF; 
   }
   
   & > .new-contact-list {
@@ -130,6 +143,10 @@ body {
     border: 4px solid lighten($kyk-dark-blue,20%);
     color: #FFF;  
     list-style-type: none;
+    width: 200px;
+    position: relative;
+    top: 7px; 
+    // border: 1px solid #FFF; 
   }
 }
 
@@ -149,6 +166,15 @@ body {
   position: relative;
   margin-bottom: 60px;
   // display: none; // there is a bug
+
+  @include media(0px) {
+    display: none;
+  }
+
+  @include media($kyk-medium-screen) {
+    display: block;
+  }
+
 }
 
 #tag_cloud, #tag_cloud_push {
