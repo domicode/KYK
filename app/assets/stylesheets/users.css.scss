@@ -60,8 +60,8 @@ input[type="submit"] {
 }
 
 .kyk-login {  
-  @include span-columns(5);
-  @include shift(2);
+  // @include span-columns(5);
+  // @include shift(2);
 }
 
 #nav-logo {
@@ -484,5 +484,14 @@ body {
   a {
     color: $kyk-white;
     text-decoration: none; 
+  }
+}
+
+.new-user {
+  width: 30%;
+  margin: 0 auto;
+
+  & label {
+    margin-bottom: -25px;
   }
 }
