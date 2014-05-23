@@ -45,6 +45,8 @@ $(document).ready(function(){
         });
     });
 
+  //$("#map").hide(); // there is a bug, don't uncomment! :P  
+
   $("#map-trigger").click(function(event){
     $("#map").toggle();
   });
