@@ -48,12 +48,14 @@
   });  
 </script>
 
-<div class="push-info">
-  <%= link_to("push my contacts", select_push_fields_path(current_user)) %>
-</div>
+
+
+
+  <div class="subnavigation">
+
 <div class="modal">
   <label for="modal-1">
-    <div class="btn js-btn">Click for Modal</div>
+    <div class="btn js-btn">Push to my contacts</div>
   </label>
   <input class="modal-state" id="modal-1" type="checkbox" />
   <div class="modal-window">
@@ -98,16 +100,6 @@
   </div>
 </div>
 
-
-  <div class="subnavigation">
-
-    <% if current_user %>      
-      <div class="user-information" id="<%= @current_user.id %>">
-        <div class="push-info">
-          <button><%= link_to("Push to my contacts", select_push_fields_path(current_user)) %></button>
-        </div>
-      </div>
-    <% end %>
 
     <div class="import-contacts">
       <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>

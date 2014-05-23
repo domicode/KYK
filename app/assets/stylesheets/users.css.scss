@@ -209,7 +209,7 @@ body {
   margin: 0 auto;
 }
 
-.subnavigation input, button {
+.subnavigation input, button, .btn {
   position: relative;
   float: left;
   text-decoration: none;
@@ -278,7 +278,6 @@ body {
   .s { font-size: 0.8em; }
   .m { font-size: 1.2em; }
   .l { font-size: 1.8em; }
-
 }
 
 .connected {
@@ -294,18 +293,18 @@ body {
 
 
 .label {
-  position: relative;
+  position: relative !important;
+  margin: 5px;
   float: left;
 }
 
 
 .checkbox {
-  float: left;
-  position: relative;
-  margin-top: 5px;
-  margin-left: 10px;
+  float: left !important;
+  position: relative !important ;
+  margin-top: -5px !important;
+  margin-left: 10px !important;
 }
-
 
 
 // Modeal for pushing contacts
@@ -334,9 +333,12 @@ body {
   }
 
   .btn {
-    @include button(simple, $base-body-color);
+    @extend button;
     font-size: $base-font-size;
     margin-bottom: $base-line-height;
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
   }
 
   .modal-open {
@@ -359,6 +361,18 @@ body {
     }
     input[type="checkbox"] {
       display: inline;
+    }
+
+    .contact-field {
+      float: left;
+    }
+
+    h2 {
+      clear: both;
+    }
+
+    input {
+      clear: both;
     }
   }
 
@@ -460,6 +474,10 @@ body {
 
   .modal-state:checked + .modal-window .modal-inner {
     top: 0;
+
+  }
+}
+
 
 .first-name {
 
