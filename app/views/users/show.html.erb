@@ -48,15 +48,21 @@
   });  
 </script>
 
-<div class="push-info">
-  <%= link_to("push my contacts", select_push_fields_path(current_user)) %>
-</div>
+      <%= form_tag user_path(current_user), method: :get, id: 'search-form' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search Contacts by Name" %>
+      <% end %>
 
-<div class="import-contacts">
-  <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>
-  <%= submit_tag "import contacts" %>
-  <% end %>
-</div>
+      <div class="import-contacts">
+        <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>
+        <%= submit_tag "import contacts" %>
+        <% end %>
+      </div>
+
+      <div class="new-contact">
+        <%= link_to "Add a contact", new_user_contact_path(current_user.id) %>
+      </div>
+
 
 
 <div class="new-contacts">
@@ -82,9 +88,6 @@
     <% end %>
 </div>
 
-<div id="map-trigger">Toggle map</div>
-<div id="map"></div>
-
 <% if @user.contacts.size > 0 %>
 
 <div id="tag_cloud">
@@ -104,6 +107,8 @@
   <%= submit_tag "Clear search", id: "clearSearch" %>
 <% end %>
 
+<div id="map-trigger">Toggle map</div>
+<div id="map"></div>
 
 <div class="cards">
   <div class="contacts">    

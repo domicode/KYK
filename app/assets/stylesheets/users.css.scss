@@ -25,6 +25,25 @@ input[type="submit"] {
   }
 }
 
+// .push-info {
+//   @extend button;
+  
+//   a {
+//     color: #FFF; 
+//     text-decoration: none; 
+//   } 
+
+//   @include media(0px) {
+//     font-size: .7rem;
+//     width: 120px;
+//   }
+
+//   @include media($kyk-medium-screen) {
+//     font-size: 1rem;
+//     width: 160px;
+//   }
+// }
+
 #nav {
   background-color: lighten($kyk-dark-blue, 10%);  
   padding-top: 1rem;
@@ -46,6 +65,7 @@ input[type="submit"] {
 }
 
 #nav-logo {
+  color: $kyk-white;
   @include span-columns(2);  
   text-align: left;
   width: 10%;  
@@ -57,9 +77,8 @@ input[type="submit"] {
 }
 
 #nav-right {
-  color: $kyk-white;
   text-align: right;
-
+  color: #FFF;
   @include media(0px) {
     font-size: .7rem;
   }
@@ -243,4 +262,12 @@ body {
   position: relative;
   margin-top: 5px;
   margin-left: 10px;
+}
+
+.first-name {
+
+  a {
+    color: $kyk-white;
+    text-decoration: none; 
+  }
 }
