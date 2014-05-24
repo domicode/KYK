@@ -236,7 +236,7 @@ body {
   margin-left: 20px;
 }
 
-#search {
+#search, #search_tags {
   border: none;
   -moz-box-shadow:    inset 0 0 5px #000000;
   -webkit-box-shadow: inset 0 0 5px #000000;
@@ -293,17 +293,17 @@ body {
 
 
 .label {
-  position: relative !important;
+  position: relative;
   margin: 5px;
   float: left;
 }
 
 
 .checkbox {
-  float: left !important;
-  position: relative !important ;
-  margin-top: -5px !important;
-  margin-left: 10px !important;
+  float: left;
+  position: relative ;
+  margin-top: -5px;
+  margin-left: 10px;
 }
 
 
@@ -436,7 +436,7 @@ body {
 
     p {
       font-size: $base-font-size;
-      max-width: 100% !important;
+      max-width: 100%;
       padding: 0;
       text-align: left;
 
