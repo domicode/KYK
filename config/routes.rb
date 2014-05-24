@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get '/users/:id/:tag', to: 'users#filter_push_contacts'
 
 
-  post '/addcontact/:user_id/:contact_id', to: 'users#add_contact'
+  post '/addcontact/users/:user_id/:contact_id', to: 'users#add_contact'
 
   root to: 'users#index'
 

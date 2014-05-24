@@ -26,7 +26,7 @@ $(document).ready(function(){
   $(".new-contact").click(function(event){
     // some Ajax request to do something
 
-    userId = $(".user-information").attr("id");
+    userId = window.location.pathname;
     contactId = this.id;
 
     

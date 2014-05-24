@@ -108,23 +108,22 @@ body {
 {
   @include span-columns(10);  
   & > #search {
-    @include span-columns(6);  
+    @include span-columns(6);
+    color: black;  
   }
 }
 
 #tag-search-form
 {
-  // margin-bottom: 50px;
 
     & > input[type="submit"] {
-      // background-color: #000;
       float: left;
-      // margin-right: 10px;
     }
 
   & > #search_tags {
     @include media(0px) {
       @include span-columns(4);
+      color: black;
     }
 
     @include media($kyk-medium-screen) {
