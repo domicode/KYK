@@ -92,8 +92,8 @@ class UsersController < ApplicationController
   # This method is for adding a new contact to the user as an embedded document
   def add_contact
     user = User.find(params[:user_id])
-    @contact = user.contacts.where(id: params[:contact_id])
-    @contact.update({ 'new_contact' => nil, 'connected' => "connected" })
+    @contacts = user.contacts.where(id: params[:contact_id])
+    @contacts.update({ 'new_contact' => nil, 'connected' => "connected" })
 
     respond_to do |format|
       # format.json { render :json => @contact }

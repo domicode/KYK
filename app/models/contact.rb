@@ -16,6 +16,7 @@ class Contact
   field :country, type: String
   field :coordinates, :type => Array
   field :email, type: String
+  field :phone_number, type: String
   field :connected, type: String
   field :new_contact, type: String
   field :tags, type: Array

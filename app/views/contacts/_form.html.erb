@@ -1,11 +1,12 @@
   <%= form_for [@user, @contact] do |f| %>
-    <p><%= f.label :first_name %> <%= f.text_field :first_name %></p>
-    <p><%= f.label :last_name %> <%= f.text_field :last_name %></p>
-    <p><%= f.label :street %> <%= f.text_field :street %></p>
-    <p><%= f.label :postal_code %> <%= f.text_field :postal_code %></p>
-    <p><%= f.label :city %> <%= f.text_field :city %></p>
-    <p><%= f.label :country %> <%= f.text_field :country %></p>
-    <p><%= f.label :email %> <%= f.text_field :email %></p>
-    <p><%= f.label :tags %> <%= f.text_field :tag_list %></p>
+    <p><%= f.text_field :first_name, placeholder: "first name" %></p>
+    <p><%= f.text_field :last_name, placeholder: "last name" %></p>
+    <p><%= f.text_field :street, placeholder: "street" %></p>
+    <p><%= f.text_field :postal_code, placeholder: "postal code" %></p>
+    <p><%= f.text_field :city, placeholder: "city" %></p>
+    <p><%= f.text_field :country, placeholder: "country" %></p>
+    <p><%= f.text_field :phone_number, placeholder: "phone number" %></p>    
+    <p><%= f.text_field :email, placeholder: "email" %></p>
+    <p><%= f.text_field :tag_list %></p>
     <p><%= f.submit %></p>
   <% end %>
