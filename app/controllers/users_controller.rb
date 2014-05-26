@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :require_login, :except => [:not_authenticated]
   skip_before_filter :require_login, only: [:index, :new, :create]
+  before_filter :get_id
 
   def index
     if current_user
@@ -43,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def create
@@ -177,6 +179,13 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  # As users are not called by +id+ but by +login+ here is a function
+  # that converts a params[:id] containing an alphanumeric login to a 
+  # params[:id] with a numeric id
+  def get_id
+    params[:id] = current_user.id
   end
 
 
