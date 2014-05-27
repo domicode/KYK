@@ -185,7 +185,7 @@ class UsersController < ApplicationController
   # that converts a params[:id] containing an alphanumeric login to a 
   # params[:id] with a numeric id
   def get_id
-    params[:id] = current_user.id
+    params[:id] = current_user.id unless current_user.nil?
   end
 
 
