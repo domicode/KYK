@@ -12,42 +12,33 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, placeholder: "first name" %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, placeholder: "last name" %>
   </div>
   <div class="field">
-    <%= f.label :street %><br>
-    <%= f.text_field :street %>
+    <%= f.text_field :street, placeholder: "street" %>
   </div>
   <div class="field">
-    <%= f.label :postal_code %><br>
-    <%= f.text_field :postal_code %>
+    <%= f.text_field :postal_code, placeholder: "postal code" %>
   </div>
   <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, placeholder: "city" %>
   </div>
   <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
+    <%= f.text_field :country, placeholder: "country" %>
   </div>
   <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, placeholder: "email" %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, placeholder: "password" %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, placeholder: "password confirmation" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Register for KYK" %>
   </div>
 <% end %>
