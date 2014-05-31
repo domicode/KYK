@@ -51,82 +51,10 @@
 
 
 
-  <div class="subnavigation">
-
-<div class="modal">
-  <label for="modal-1">
-    <div class="btn js-btn">Push to my contacts</div>
-  </label>
-  <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal-window">
-    <div class="modal-inner">
-      <label class="modal-close" for="modal-1"></label>
-        <h2>Please select the fields to push</h2>
-
-        <%= form_tag(controller: "users", action: "push", method: "post") do %>
-          <% @user.attributes.each do |key, value| %>
-            <% unless @blacklist.include?(key) %>
-              <div class="contact-field">
-                <%= label_tag(:"#{key}", key.titleize, class: "label") %>
-                <%= check_box_tag(:"#{key}", value=1, checked=true, class: "checkbox") %><br>
-              </div>
-            <% end %>
-          <% end %>
-
-          <div class="select-contacts">
-            <h2>select contacts</h2>
-
-            <div id="tag_cloud_push">
-              <% if !@user.tags_with_weight.empty? %>
-                <% user_tags_with_weight = @user.tags_with_weight %>
-                <% max_weight = user_tags_with_weight.max_by(&:last)[1] %>
-                <% user_tags_with_weight.each do |tag, weight| %>
-                <%= link_to tag, user_path(@user) +"/"+ tag, class: %w{s m l}[((weight/max_weight.to_f)*3).round-1] %>
-                <% end %>
-              <% end %>
-              <%= link_to("all", current_user.id.to_s+"/url", class: "l") %>
-            </div>
-
-            <div class="push-contacts">
-            <%= render partial: "push_contact" %>
-            </div>
-          </div>
 
 
-        <%= submit_tag "push to my contacts" %>
-        <% end %>
-        <label class="modal-close" for="modal-1"></label>
-    </div>
-  </div>
-</div>
 
 
-    <div class="import-contacts">
-      <%= form_tag(controller: "import", action: "authenticate", method: "post") do %>
-      <%= submit_tag "import contacts" %>
-      <% end %>
-    </div>
-
-    <div class="new-contact">
-      <button><%= link_to "Add a contact", new_user_contact_path(current_user.id) %></button>
-    </div>
-
-    <div class="name-search">
-      <%= form_tag user_path(current_user), method: :get, id: 'search-form' do %>
-        <%= text_field_tag :search, params[:search], placeholder: "search by first name" %>
-        <%= submit_tag "search" %><%= submit_tag "clear", id: "clearSearch" %>
-      <% end %>
-    </div>
-
-    <div class="tag-search">
-      <%= form_tag user_path(@user), method: :get, id: 'tag-search-form' do %>    
-        <%= text_field_tag :search_tags, params[:search_tags], placeholder: "search by tag" %>  
-        <%= submit_tag "search" %><%= submit_tag "clear", id: "clearSearch" %>
-      <% end %>
-    </div>
-
-    <div class="search-type"><button>change search type</button></div>
-  </div>
 
 
 
