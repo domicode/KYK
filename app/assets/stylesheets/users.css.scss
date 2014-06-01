@@ -132,75 +132,7 @@ body {
   }
 }
 
-.new-contacts {  
-  position: absolute; 
-  top: 10px; 
-  right: 150px;
-  width: 150px;
-  left: 50%;
-  // font-family: $helvetica;   
 
-  @include media(0px) {
-    font-size: .7rem;
-  }
-
-  @include media($kyk-medium-screen) {
-    font-size: 1rem;
-  }
-
-  & > .new-contacts-button {
-    position: relative;
-    top: 0px;
-    right: 0px;
-    // left: 70px;
-    // border: 1px solid #FFF; 
-    border-bottom: 1px solid #FFF;
-  }
-  
-  & > .new-contact-list {
-    // border-bottom: 1px #FFF;
-    background-color: lighten($kyk-dark-blue,20%);
-    border: 2px solid $kyk-dark-blue;
-    color: #FFF;  
-    list-style-type: none;
-    width: 250px;
-    position: relative;
-    overflow: auto;
-    
-    .new-contact {
-      border-bottom: 1px solid lighten($kyk-dark-blue,50%); 
-      margin-bottom: 2px;
-      overflow: auto;
-    }
-
-    .new-contact:last-child {  // neat trick
-      border-bottom: none;
-    }
-
-    .contact-info {
-      width: 180px;
-      position: relative;
-      float: left;
-      padding-left: 5px;
-      padding-top: 2px;
-    }
-
-    .buttons {
-      float: right;
-      position: relative;
-    }
-
-    button {
-      padding: 0px 0px;
-      float: right;
-      margin: 2px;
-      border: 1px solid $kyk-dark-blue;
-      border-radius: 5px;
-      width: 25px;
-      height: 25px;
-    }
-  }
-}
 
 .subnavigation {
   width: 100%;
@@ -251,6 +183,79 @@ body {
 .new-contact-list {
   display: none;
 }
+
+.new-contacts {  
+  position: absolute; 
+  top: 10px; 
+  right: 150px;
+  width: 150px;
+  left: 50%;
+  border-right: none;
+  // font-family: $helvetica;   
+
+  @include media(0px) {
+    font-size: .7rem;
+  }
+
+  @include media($kyk-medium-screen) {
+    font-size: 1rem;
+  }
+
+  & > .new-contacts-button {
+    position: relative;
+    top: 0px;
+    right: 0px;
+    // left: 70px;
+    // border: 1px solid #FFF; 
+    border-bottom: 2px solid #FFF;
+    border-right: none;
+  }
+  
+  & > .new-contact-list {
+    // border-bottom: 1px #FFF;
+    background-color: lighten($kyk-dark-blue,20%);
+    border: 2px solid $kyk-dark-blue;
+    color: #FFF;  
+    list-style-type: none;
+    width: 250px;
+    position: relative;
+    overflow: auto;
+    
+    .new-contact {
+      border-bottom: 1px solid lighten($kyk-dark-blue,50%); 
+      margin-bottom: 2px;
+      overflow: auto;
+    }
+
+    .new-contact:last-child {  // neat trick
+      border-bottom: none;
+    }
+
+    .contact-info {
+      width: 180px;
+      position: relative;
+      float: left;
+      padding-left: 5px;
+      padding-top: 2px;
+    }
+
+    .buttons {
+      float: right;
+      position: relative;
+    }
+
+    button {
+      padding: 0px 0px;
+      float: right;
+      margin: 2px;
+      border: 1px solid $kyk-dark-blue;
+      border-radius: 5px;
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
 
 #map {
   box-shadow: $kyk-blue 2px 2px 10px;
