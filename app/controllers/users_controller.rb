@@ -115,8 +115,8 @@ class UsersController < ApplicationController
     @keys = []
     @contacts = []
     params.each do |key, value|
-      @keys.push(key) if value.to_i == 1
-      @contacts.push(key) if value.to_i == 2
+      @keys.push(key) if value.to_s.to_i == 1
+      @contacts.push(key) if value.to_s.to_i == 2
     end
 
     current_user.update_contacts_attributes(@keys, @contacts)
