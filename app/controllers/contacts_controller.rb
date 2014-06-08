@@ -59,8 +59,6 @@ class ContactsController < ApplicationController
 
 
 
-
-
   private
 
   def contact_params

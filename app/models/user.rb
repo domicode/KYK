@@ -2,7 +2,6 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Attributes::Dynamic
-  # include Mongoid::Versioning
 
   include Geocoder::Model::Mongoid
   geocoded_by :address               # can also be an IP address
@@ -20,14 +19,10 @@ class User
   field :country, type: String
   field :coordinates, :type => Array  
 
-  # field :latitude, type: BigDecimal
-  # field :longitude, type: BigDecimal
-
   embeds_many :contacts, :inverse_of => :contacts
   accepts_nested_attributes_for :contacts
   has_many :authentications, :dependent => :destroy 
   accepts_nested_attributes_for :authentications
-
 
   validates :email, presence: true
   validates :email, uniqueness: true

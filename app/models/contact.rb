@@ -1,4 +1,3 @@
-
 class Contact
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -36,7 +35,7 @@ class Contact
 
   embedded_in :user
 
-  #validates :email, uniqueness: true
+  validates :email, uniqueness: true
 
 
   def address
