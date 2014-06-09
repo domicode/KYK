@@ -35,6 +35,10 @@ class Contact
 
   embedded_in :user
 
+  embeds_many :notes, :inverse_of => :notes
+  accepts_nested_attributes_for :notes
+
+
   #validates :email, uniqueness: true
 
 
