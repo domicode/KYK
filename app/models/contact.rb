@@ -33,9 +33,12 @@ class Contact
   geocoded_by :address               # can also be an IP address
   after_validation :geocode          # auto-fetch coordinates
 
+  # validates :email, uniqueness: true
+
   embedded_in :user
 
-  validates :email, uniqueness: true
+  embeds_many :notes, :inverse_of => :notes
+  accepts_nested_attributes_for :notes
 
 
   def address
