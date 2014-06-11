@@ -10,22 +10,23 @@ Rails.application.routes.draw do
   get 'user_sessions/destroy'
 
   resources :users do
-    resources :contacts
+    resources :contacts do
+      resources :notes
+    end
   end
 
+
+  # Routes for adding contacts and pushing user information
   get '/users/:id/select_push_fields', to: 'users#select_push_fields', as: :select_push_fields
   post '/users/:id/push', to: 'users#push', as: :push_info
   get '/users/:id/:tag', to: 'users#filter_push_contacts'
-
-
   post '/addcontact/users/:user_id/:contact_id', to: 'users#add_contact'
 
-  root to: 'users#index'
 
-  resources :user_sessions, only: [:new, :create, :destroy]
-
+  # Sorcery login routes
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout
+  resources :user_sessions, only: [:new, :create, :destroy]
 
 
   # This is for fetching stuff from google
@@ -37,6 +38,11 @@ Rails.application.routes.draw do
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback" # for use with Github
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+
+
+  # Root to index and index is redirected to login if user is not logged in
+  root to: 'users#index'
+
 
   
 
