@@ -8,4 +8,5 @@ class Note
 
 
   embedded_in :contact 
+  
 end

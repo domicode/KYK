@@ -42,7 +42,7 @@ class User
         user.contacts.each do |contact| #try to find the contacts by user.contacts.where(user_id: = self.id), might be faster
           if contact.user_id.to_s == self.id.to_s
             keys.each do |key|
-              unless self.attributes[key] == ""
+              unless self.attributes[key].blank? #to test if it works
                 contact.update({ key => self.attributes[key] })
               end
             end
