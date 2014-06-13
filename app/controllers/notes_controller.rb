@@ -26,7 +26,9 @@ class NotesController < ApplicationController
 
 
   def destroy
-    
+    @user = current_user
+    @contact = @user.contacts.find(params[:id])
+    @contact.notes.find(params[:id]).destroy
   end
 
 
